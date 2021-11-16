@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
+.body-login{
+    background-color: #f8f9fc;
+}
+.judul-login{
+    letter-spacing: 0.8px;
+    font-size: 18px;
+}
+.log .input-cont {
+    position: relative;
+    margin-bottom: 35px;
+}
+.log .input-cont:last-of-type {
+    margin-bottom: 35px;
+}
+.log label, .font15{
+    font-size: 15px;
+}
+.log .custom-control-label{
+    color: #5d5e6f;
+}
+.log .input-cont input {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    color: #3A3B45;
+    font-weight: 400;
+    background: none;
+    border: none;
+}
+.log .input-cont input:focus {
+    outline: none;
+}
+.log .input-cont label {
+    position: absolute;
+    color: #5d5e6f;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+        -o-transition: .3s;
+        transition: .3s;
+}
+.log .input-cont input:focus + label, .log .input-cont input:not(:placeholder-shown) + label{
+    margin-top: -30px;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+    -webkit-transform-origin-x: 0;
+    color: #828397;
+}
+.log .border1,
+.log .border2 {
+    position: absolute;
+    height: 1px;
+    background-color: #5d5e6f;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.log .input-cont input:-webkit-autofill,
+.log .input-cont input:-webkit-autofill:hover, 
+.log .input-cont input:-webkit-autofill:focus, 
+.log .input-cont input:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px white inset !important;
+    position: unset;
+}
+.log .border1::after,
+.log .border1::before,
+.log .border2::after,
+.log .border2::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+        -o-transition: .5s;
+        transition: .5s;
+}
+.log .border1::after,
+.log .border2::after{
+    right: 50%;
+    background-color: #4d8517;
+}
+.log .border1::before,
+.log .border2::before{
+    left: 50%;
+    background-color: #4d8517;
+}
+.log .input-cont input:focus ~ .border1::after,
+.log .input-cont input:focus ~ .border1::before,
+.log .input-cont input:focus ~ .border2::after,
+.log .input-cont input:focus ~ .border2::before{
+    width: 50%;
+}
+
+.log button[type="submit"]{
+    background-color: #4d8517;
+    border-color: #4d8517;
+    font-size: 1rem!important;
+}
