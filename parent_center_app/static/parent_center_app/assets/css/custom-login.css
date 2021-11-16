@@ -108,3 +108,8 @@
     border-color: #4d8517;
     font-size: 1rem!important;
 }
+
+.log button[type="submit"]:hover{
+    background-color: #529018;
+    border-color: #529018;
+}
