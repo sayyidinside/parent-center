@@ -18,3 +18,7 @@ def login_user(request):
             else:
                 messages.error(request, 'Username or Password is incorrect')
         return render(request, 'parent_center_app/login.html', {})
+
+
+def dashboard(request):
+    return render(request, 'parent_center_app/dashboard.html', {})
