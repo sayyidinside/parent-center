@@ -3,7 +3,7 @@
     font-family: 'Noto Sans', sans-serif;
 }
 .body-login{
-    background-color: #f8f9fc;
+    background-color: #f2f2f2;
 }
 .judul-login{
     letter-spacing: 0.8px;
@@ -109,7 +109,7 @@
     font-size: 1rem!important;
 }
 
-.log button[type="submit"]:hover{
-    background-color: #529018;
-    border-color: #529018;
+.log button[type="submit"]:hover, .log button[type="submit"]:active{
+    background-color: #529018!important;
+    border-color: #529018!important;
 }

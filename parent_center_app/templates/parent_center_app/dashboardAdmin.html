@@ -1,0 +1,217 @@
+{% extends 'parent_center_app/base.html' %}
+
+{% block content %}
+    <div class="row mx-4 card-jml">
+        <div class="col-3 ml-0 pl-0">
+            <a href="">
+                <div class="card">
+                    <div class="card-body card-dashboard">
+                        <h5 class="card-title">Tenaga Pendidik</h5>
+                        <div class="card-content">
+                            <i class="fas fa-fw fa-chalkboard-teacher fa-2x"></i><span>50</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3 pl-0">
+            <a href="">
+                <div class="card">
+                    <div class="card-body card-dashboard">
+                        <h5 class="card-title">Siswa Kelas X</h5>
+                        <div class="card-content">
+                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3 pl-0">
+            <a href="">
+                <div class="card">
+                    <div class="card-body card-dashboard">
+                        <h5 class="card-title">Siswa Kelas XI</h5>
+                        <div class="card-content">
+                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3 pl-0 pr-0">
+            <a href="">
+                <div class="card">
+                    <div class="card-body card-dashboard">
+                        <h5 class="card-title">Siswa Kelas XII</h5>
+                        <div class="card-content">
+                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row mx-4 mt-3">
+        <div class="col-md-6 col-lg-8 pl-0">
+            <h6 class="subtitle-dashboard">Jadwal KBM</h6>
+            <div class="card">
+                <div class="card-body card-dashboard">
+                    <div class="row d-flex mr-0 ml-0">
+                        <div class="col-sm-12 col-lg-6 align-items-center">
+                            <div class="dropdown dropdown-jadwal">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="btn-jadwal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Lihat Jadwal
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btn-jadwal">
+                                  <a class="dropdown-item" href="#">Kemarin</a>
+                                  <a class="dropdown-item" href="#">Hari ini</a>
+                                  <a class="dropdown-item" href="#">Besok</a>
+                                  <a class="dropdown-item" href="#">Lusa</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6 order-1 align-self-center">
+                            <span>Rabu / 17 November 2021</span>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-custom-dashboard table-hover" id="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Kelas</th>
+                                    <th scope="col">Mapel</th>
+                                    <th scope="col">Guru</th>
+                                    <th scope="col">Jam Pelajaran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>X RPL 1</td>
+                                    <td>
+                                        <ol>
+                                            <li>Bahasa Indonesia</li>
+                                            <li>Pemrograman Dasar</li>
+                                            <li>Bahasa Inggris</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>Ibu A</li>
+                                            <li>Bapak B</li>
+                                            <li>Ibu C</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>07.30 - 09.00</li>
+                                            <li>09.00 - 11.00</li>
+                                            <li>11.00 - 12.00</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>X RPL 2</td>
+                                    <td>
+                                        <ol>
+                                            <li>Bahasa Indonesia</li>
+                                            <li>Pemrograman Dasar</li>
+                                            <li>Bahasa Inggris</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>Ibu A</li>
+                                            <li>Bapak B</li>
+                                            <li>Ibu C</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>07.30 - 09.00</li>
+                                            <li>09.00 - 11.00</li>
+                                            <li>11.00 - 12.00</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>X RPL 3</td>
+                                    <td>
+                                        <ol>
+                                            <li>Bahasa Indonesia</li>
+                                            <li>Pemrograman Dasar</li>
+                                            <li>Bahasa Inggris</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>Ibu A</li>
+                                            <li>Bapak B</li>
+                                            <li>Ibu C</li>
+                                        </ol>
+                                    </td>
+                                    <td>
+                                        <ol>
+                                            <li>07.30 - 09.00</li>
+                                            <li>09.00 - 11.00</li>
+                                            <li>11.00 - 12.00</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 pr-0">
+            <h6 class="subtitle-dashboard">Online User</h6>
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="title-user-online">Admin</h6>
+                    <div class="scroll-div h165">
+                        <ul class="list-group list-group-flush list-user">
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    
+                    <h6 class="title-user-online">Guru</h6>
+                    <div class="scroll-div h165">
+                        <ul class="list-group list-group-flush list-user">
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        </ul>
+                    </div>
+
+                    <h6 class="title-user-online">Orang tua / Wali</h6>
+                    <div class="scroll-div h165">
+                        <ul class="list-group list-group-flush list-user">
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable({
+                pageLength : 5,
+                lengthMenu: [5, 10, 25, 100]
+            });
+        });
+    </script>
+{% endblock footer %}

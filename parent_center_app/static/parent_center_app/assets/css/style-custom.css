@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+/* base */
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
+body{
+    background-color: #f2f2f2!important;
+}
+.dropdown-toggle.arrow-hidden::after{
+    display: none;
+}
+.bg-putih{
+    background-color: #fff;
+}
+.bg-green{
+    background-color: #57991a;
+    background-image: linear-gradient(180deg,#57991a 10%,#4d8517 100%);
+    background-size: cover;
+}
+.sb-sidenav-menu a.nav-link{
+    color: rgba(255,255,255,.8)!important;
+}
+.sb-sidenav-menu a.nav-link.active, .sb-sidenav-menu a.nav-link.active svg{
+    color: #fff!important;
+}
+.sb-sidenav-menu a.nav-link.active{
+    font-weight: 700!important;
+}
+.sb-sidenav-menu a.nav-link svg{
+    color: rgba(255,255,255,.3)!important;
+}
+.navbar-nav a, #ddUser .dropdown-item{
+    color: #212529!important;
+}
+.navbar-nav a svg, .card-dashboard svg{
+    color: #686a7d!important;
+}
+.sb-sidenav .dropdown-divider{
+    border-color: rgba(255,255,255,.15);
+}
+.sb-sidenav .dropdown-header{
+    color: rgba(255,255,255,.4);
+}
+.sb-sidenav-menu a.nav-link:hover > svg, .sb-sidenav-menu a.nav-link:hover{
+    color: #fff!important;
+    fill: #fff!important;
+}
+#sidebarToggle{
+    height: 2.5rem!important;
+    width: 2.5rem!important;
+    font-weight: 400!important;
+    color: #57991a!important;
+}
+#ddUser .dropdown-item.active, #ddUser .dropdown-item:active, .dropdown-jadwal .dropdown-item:active{
+    background-color: #57991a!important;
+    color: #fff!important;
+}
+.navbar-brand{
+    height: 56px;
+    color: #fff;
+    font-family: 'Satisfy', cursive!important;
+    font-size: 25px!important;
+}
+.navbar-brand:hover{
+    color: #fff;
+}
+.sb-nav-fixed .sb-topnav {
+    z-index: 50!important;
+}
+.sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+    padding-top: 0!important;
+}
+/* .sb-sidenav-menu{
+    padding-top: 56px;
+} */
+.dropdown-header{
+    padding-left: 1rem!important;
+    font-weight: bold;
+}
+.sb-sidenav-menu, .sb-topnav.navbar, #ddUser .dropdown-item{
+    font-size: 13.6px;
+}
+.nav-link{
+    padding: 12.8px 16px!important;
+}
+.title-content{
+    font-size: 20px;
+    font-weight: 600;
+    color: #57991a;
+    text-transform: uppercase;
+}
+.div-title .breadcrumb{
+    background-color: transparent;
+    padding-left: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.div-title .breadcrumb-item a{
+    font-size: 15px;
+}
+
+/* index */
+.hr-title{
+    border-color: #ddd!important;
+    border-width: 2px;
+}
+.subtitle-dashboard{
+    margin-left: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #9092a2;
+    font-size: 15px;
+}
+.card-dashboard, #btn-jadwal, .dropdown-jadwal .dropdown-item{
+    font-size: 15px!important;
+}
+#btn-jadwal{
+    width: 50%;
+}
+.card-dashboard .row{
+    margin-bottom: 1.25rem;
+}
+#table-custom_wrapper *, .table-custom-dashboard *{
+    font-size: 14px;
+}
+.table-custom-dashboard ol{
+    padding-inline-start: 20px;
+}
+#table-custom_paginate .paginate_button.page-item.active a{
+    background-color: #57991a!important;
+    border-color: #57991a;
+}
+#table-custom_paginate ul{
+    float: right;
+}
+/* width */
+.table-responsive::-webkit-scrollbar {
+    height: 7px!important;
+}
+.scroll-div::-webkit-scrollbar{
+    width: 7px;
+}
+/* Track */
+.table-responsive::-webkit-scrollbar-track, .scroll-div::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.table-responsive::-webkit-scrollbar-thumb, .scroll-div::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.075); 
+}
+
+/* Handle on hover */
+.table-responsive::-webkit-scrollbar-thumb:hover, .scroll-div::-webkit-scrollbar-thumb:hover {
+    background: #ccc; 
+}
+
+#table-custom_wrapper .row{
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+.user-online tr td{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.table-custom-dashboard.no-border td{
+    border: 0!important;
+}
+.title-user-online{
+    font-weight: bold;
+    color: #9092a2;
+    font-size: 15px;
+}
+.list-group-flush.list-user .list-group-item{
+    padding: 0.35rem 0rem!important;
+    border: 0!important;
+    font-size: 14px;
+}
+.list-group-flush.list-user .list-group-item .fa-circle{
+    color: #57991a;
+}
+.scroll-div.h165{
+    height: 165px;
+    overflow-y: auto;
+}
+.scroll-div, .card-jml a{
+    color: #212529!important;
+}
+.card-jml a:hover{
+    text-decoration: unset;
+}
+.card-jml .card-dashboard span{
+    font-size: 23px!important;
+    margin-left: 10px;
+}
+.card-jml .card-dashboard .card-content{
+    text-align: center;
+    width: 100%;
+}
+.card-dashboard .card-title{
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .03125rem;
+    margin-bottom: 20px;
+}
+/* siswa */

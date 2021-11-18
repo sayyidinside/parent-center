@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{{title}}</title>
+        <link rel="icon" href="{% static 'parent_center_app/assets/img/logoTamanSiswa2.png' %}">
+        <link href="{% static 'parent_center_app/assets/css/bootstrap-toggle.min.css' %}" rel="stylesheet">
+        <link href="{% static 'parent_center_app/assets/css/style-custom.css' %}" rel="stylesheet" />
+        <link href="{% static 'parent_center_app/assets/css/styles.css' %}" rel="stylesheet" />
+        
+        <link href="{% static 'parent_center_app/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'parent_center_app/assets/js/all.min.js' %}"></script>
+
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-putih shadow-sm">
+            <button class="btn btn-link btn-sm order-1 rounded-circle" id="sidebarToggle" href="#"><i class="fas fa-bars fa-lg"></i></button>
+
+            <!-- User-->
+            <ul class="navbar-nav ml-auto md-0 mr-2">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i>Username</a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" id="ddUser">
+                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark bg-green" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <!-- Divider -->
+                            <a class="navbar-brand d-flex align-self-center align-items-center" href="/dashboard">
+                                ParentCenter
+                            </a>
+                            <div class="dropdown-divider mx-3 mt-0"></div>
+                            <a class="nav-link" href="/dashboard">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>&nbsp;
+                                Dashboard
+                            </a>
+                            <!-- Divider -->
+                            <div class="dropdown-divider mx-3"></div>
+
+                            <!-- Heading -->
+                            <div class="dropdown-header">
+                                DATA
+                            </div>
+                            <a class="nav-link" href="/siswa">
+                                <i class="fas fa-fw fa-users"></i>&nbsp;
+                                Siswa
+                            </a>
+                            <a class="nav-link" href="/guru">
+                                <i class="fas fa-fw fa-chalkboard-teacher"></i>&nbsp;
+                                Guru
+                            </a>
+                            <a class="nav-link" href="/orangtua">
+                                <i class="fas fa-fw fa-user-tie"></i>&nbsp;
+                                Orang tua / Wali
+                            </a>
+                            <a class="nav-link" href="/spp">
+                                <i class="fas fa-fw fa-wallet"></i>&nbsp;
+                                Pembayaran SPP
+                            </a>
+                            <a class="nav-link" href="/kelas">
+                                <i class="fas fa-fw fa-chalkboard"></i>&nbsp;
+                                Kelas
+                            </a>
+                            <a class="nav-link" href="/mapel">
+                                <i class="fas fa-fw fa-book"></i>&nbsp;
+                                Mata Pelajaran
+                            </a>
+
+                            <!-- Divider -->
+                            <div class="dropdown-divider mx-3"></div>
+
+                            <a class="nav-link" href="/kbm">
+                                <i class="fas fa-fw fa-calendar-alt"></i>&nbsp;
+                                Jadwal KBM
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-0">
+                        <div class="div-title mx-4 py-4">
+                            <span class="title-content">{{title}}</span>
+                            {% block breadcrumb %} {% endblock breadcrumb %}
+                            <hr class="dropdown-divider hr-title mt-3">
+                        </div>
+                        {% block content %}
+                        {% endblock content %}
+                    </div>
+                </main>
+                <footer class="py-4 bg-grey mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; PARENT CENTER 2021</div>
+                            <div>
+                                <a href="/privacy-policy">Privacy Policy</a>
+                                &middot;
+                                <a href="/terms-condition">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="//code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="{% static 'parent_center_app/assets/js/scripts.js' %}"></script>
+        <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="//cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        
+        <script src="{% static 'parent_center_app/assets/js/demo/datatables-demo.js' %}"></script>
+        <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="//cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        
+        <script src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+        {% block footer %}
+        {% endblock footer %}
+    </body>
+</html>

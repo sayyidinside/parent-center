@@ -20,5 +20,5 @@ def login_user(request):
         return render(request, 'parent_center_app/login.html', {})
 
 
-def dashboard(request):
-    return render(request, 'parent_center_app/dashboard.html', {})
+def dashboardAdmin(request):
+    return render(request, 'parent_center_app/dashboardAdmin.html', {'title':'Dashboard'})
