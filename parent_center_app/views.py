@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login
 # Create your views here.
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('dashboard admin')
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -21,7 +21,8 @@ def login_user(request):
 
 
 def dashboardAdmin(request):
-    return render(request, 'parent_center_app/dashboard_admin.html', {'title':'Dashboard'})
+    return render(request, 'parent_center_app/dashboard_admin.html', {'title': 'Dashboard'})
+
 
 def dataSiswa(request):
-    return render(request, 'parent_center_app/data_siswa.html', {'title':'Data Siswa'})
+    return render(request, 'parent_center_app/data_siswa.html', {'title': 'Data Siswa'})
