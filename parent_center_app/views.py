@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -25,15 +26,29 @@ def logout_user(request):
     return redirect('login')
 
 
+@login_required(login_url='login')
 def dashboardAdmin(request):
-    return render(request, 'parent_center_app/dashboard_admin.html', {'title': 'Dashboard'})
+    return render(request,
+                  'parent_center_app/dashboard_admin.html',
+                  {'title': 'Dashboard'})
 
 
+@login_required(login_url='login')
 def dataSiswa(request):
-    return render(request, 'parent_center_app/data_siswa.html', {'title':'Data Siswa'})
+    return render(request,
+                  'parent_center_app/data_siswa.html',
+                  {'title': 'Data Siswa'})
 
+
+@login_required(login_url='login')
 def dataGuru(request):
-    return render(request, 'parent_center_app/data_guru.html', {'title':'Data Guru'})
+    return render(request,
+                  'parent_center_app/data_guru.html',
+                  {'title': 'Data Guru'})
 
+
+@login_required(login_url='login')
 def dataOrangtua(request):
-    return render(request, 'parent_center_app/data_orangtua.html', {'title':'Data Orang Tua / Wali'})
+    return render(request,
+                  'parent_center_app/data_orangtua.html',
+                  {'title': 'Data Orang Tua / Wali'})
