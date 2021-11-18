@@ -42,7 +42,7 @@
                                 ParentCenter
                             </a>
                             <div class="dropdown-divider mx-3 mt-0"></div>
-                            <a class="nav-link" href="/dashboard">
+                            <a class="nav-link" href="/dashboard_admin">
                                 <i class="fas fa-fw fa-tachometer-alt"></i>&nbsp;
                                 Dashboard
                             </a>
@@ -53,7 +53,7 @@
                             <div class="dropdown-header">
                                 DATA
                             </div>
-                            <a class="nav-link" href="/siswa">
+                            <a class="nav-link" href="/data_siswa">
                                 <i class="fas fa-fw fa-users"></i>&nbsp;
                                 Siswa
                             </a>
@@ -92,11 +92,8 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-0">
-                        <div class="div-title mx-4 py-4">
-                            <span class="title-content">{{title}}</span>
-                            {% block breadcrumb %} {% endblock breadcrumb %}
-                            <hr class="dropdown-divider hr-title mt-3">
-                        </div>
+                        {% block breadcrumb %}
+                        {% endblock breadcrumb %}
                         {% block content %}
                         {% endblock content %}
                     </div>
