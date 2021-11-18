@@ -1,9 +1,13 @@
 from django.db import models
+from .utils import custom_id
 
 
 # Create your models here.
 class mapel(models.Model):
-    id_mapel = models.CharField(max_length=10)
+    id_mapel = models.CharField(max_length=10,
+                                primary_key=True,
+                                unique=True,
+                                default=custom_id)
     nama = models.CharField(max_length=50)
 
     class jenis_mapel(models.TextChoices):
