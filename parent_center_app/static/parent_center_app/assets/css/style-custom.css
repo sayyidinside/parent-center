@@ -33,6 +33,9 @@ body{
 .navbar-nav a, #ddUser .dropdown-item{
     color: #212529!important;
 }
+#ddUser .dropdown-item:active{
+    color: #fff!important;
+}
 .navbar-nav a svg, .card-dashboard svg{
     color: #686a7d!important;
 }
@@ -52,9 +55,12 @@ body{
     font-weight: 400!important;
     color: #57991a!important;
 }
-#ddUser .dropdown-item.active, #ddUser .dropdown-item:active, .dropdown-jadwal .dropdown-item:active{
+.dropdown-item.active, .dropdown-item:active, .dropdown-jadwal .dropdown-item:active{
     background-color: #57991a!important;
-    color: #fff!important;
+    color: #fff;
+}
+.dropdown-item:focus{
+    outline: 0!important;
 }
 .navbar-brand{
     height: 56px;
@@ -116,7 +122,7 @@ body{
     font-size: 15px!important;
 }
 #btn-jadwal{
-    width: 50%;
+    width: 70%;
 }
 .card-dashboard .row{
     margin-bottom: 1.25rem;
@@ -208,3 +214,99 @@ body{
     margin-right: .75rem;
 }
 /* siswa */
+#table-custom_length label, #table-custom_filter label *{
+    display: inline-block!important;
+}
+#table-custom_filter label{
+    width: 100%;
+}
+#table-custom_length select{
+    width: 40%!important;
+}
+#table-custom_filter label input{
+    margin-left: 10px;
+    width: 50%!important;
+}
+@media screen and (max-width: 987px){
+    .table-dashboard #table-custom_wrapper .row .col-sm-12, .div-jadwal .row div{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .div-tambah div{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .table-dashboard div.dataTables_wrapper div.dataTables_filter, .table-dashboard div.dataTables_wrapper div.dataTables_length {
+        text-align: center;
+    }
+    .div-jadwal .row div{
+        text-align: center!important;
+    }
+    #btn-jadwal{
+        margin-bottom: 10px;
+    }
+}
+@media screen and (max-width: 547px){
+    .div-tambah div{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .div-tambah div:nth-child(2){
+        padding-top: 0.5rem;
+        text-align: left!important;
+    }
+}
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: right;
+}
+@media screen and (max-width: 767px){
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter {
+        text-align: center;
+    }
+    .resp-m4{
+        margin-top: 1.5rem;
+    }
+}
+.table-siswa tbody tr td{
+    padding: 6px 12px;
+}
+.btn-tambah.btn-light{
+    background-color: #57991a!important;
+    border-color: #66ad1f!important;
+    font-size: 14px!important;
+    color: #fff!important;
+}
+.btn-tambah:hover{
+    background-color: #66ad1f!important;
+    border-color: #66ad1f!important;
+}
+.div-sort .dropdown{
+    display: inline-block;
+}
+.div-sort *{
+    font-size: 14px!important;
+    color: #212529;
+}
+.btn-light{
+    border: 1px solid #e2e6ea!important;
+}
+#modal_hapus .modal-header h5{
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #57991a;
+}
+#modal_hapus .modal-header svg{
+    font-size: 20px;
+    color: #686a7d;
+}
+#modal_hapus .modal-body{
+    font-size: 14px;
+}
+#modal_hapus .modal-footer button{
+    font-size: 14px;
+}
+#modal_hapus .close:focus{
+    outline: none;
+}
