@@ -66,7 +66,7 @@ body{
     color: #fff;
 }
 .sb-nav-fixed .sb-topnav {
-    z-index: 50!important;
+    z-index: 1038!important;
 }
 .sb-nav-fixed #layoutSidenav #layoutSidenav_nav .sb-sidenav {
     padding-top: 0!important;
@@ -190,7 +190,7 @@ body{
 .card-jml a:hover{
     text-decoration: unset;
 }
-.card-jml .card-dashboard span{
+.card-jml .card-dashboard span, .card-jml .card-dashboard .card-content svg{
     font-size: 23px!important;
     margin-left: 10px;
 }
@@ -202,6 +202,9 @@ body{
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: .03125rem;
-    margin-bottom: 20px;
+}
+.container-fluid .row{
+    margin-left: .75rem;
+    margin-right: .75rem;
 }
 /* siswa */

@@ -1,58 +1,58 @@
 {% extends 'parent_center_app/base.html' %}
 
 {% block content %}
-    <div class="row mx-4 card-jml">
-        <div class="col-3 ml-0 pl-0">
+    <div class="row card-jml">
+        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3 mb-2">
             <a href="">
                 <div class="card">
                     <div class="card-body card-dashboard">
-                        <h5 class="card-title">Tenaga Pendidik</h5>
+                        <h5 class="card-title">Guru</h5>
                         <div class="card-content">
-                            <i class="fas fa-fw fa-chalkboard-teacher fa-2x"></i><span>50</span>
+                            <i class="fas fa-fw fa-chalkboard-teacher"></i><span>50</span>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-3 pl-0">
+        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3 mb-2">
             <a href="">
                 <div class="card">
                     <div class="card-body card-dashboard">
                         <h5 class="card-title">Siswa Kelas X</h5>
                         <div class="card-content">
-                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                            <i class="fas fa-fw fa-users"></i><span>100</span>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-3 pl-0">
+        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3 mb-2">
             <a href="">
                 <div class="card">
                     <div class="card-body card-dashboard">
                         <h5 class="card-title">Siswa Kelas XI</h5>
                         <div class="card-content">
-                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                            <i class="fas fa-fw fa-users"></i><span>100</span>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-3 pl-0 pr-0">
+        <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3 mb-2">
             <a href="">
                 <div class="card">
                     <div class="card-body card-dashboard">
                         <h5 class="card-title">Siswa Kelas XII</h5>
                         <div class="card-content">
-                            <i class="fas fa-fw fa-users fa-2x"></i><span>100</span>
+                            <i class="fas fa-fw fa-users"></i><span>100</span>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
     </div>
-    <div class="row mx-4 mt-3">
-        <div class="col-md-6 col-lg-8 pl-0">
+    <div class="row mt-3">
+        <div class="col-md-6 col-lg-8">
             <h6 class="subtitle-dashboard">Jadwal KBM</h6>
             <div class="card">
                 <div class="card-body card-dashboard">
@@ -63,10 +63,10 @@
                                     Lihat Jadwal
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btn-jadwal">
-                                  <a class="dropdown-item" href="#">Kemarin</a>
-                                  <a class="dropdown-item" href="#">Hari ini</a>
-                                  <a class="dropdown-item" href="#">Besok</a>
-                                  <a class="dropdown-item" href="#">Lusa</a>
+                                    <button class="dropdown-item" id="kemarin">Kemarin</button>
+                                    <button class="dropdown-item" id="hari ini">Hari ini</button>
+                                    <button class="dropdown-item" id="besok">Besok</button>
+                                    <button class="dropdown-item" id="lusa">Lusa</button>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-lg-4 pr-0">
+        <div class="col-md-6 col-lg-4">
             <h6 class="subtitle-dashboard">Online User</h6>
             <div class="card">
                 <div class="card-body">
