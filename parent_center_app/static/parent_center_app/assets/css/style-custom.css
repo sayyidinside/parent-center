@@ -7,6 +7,15 @@
 body{
     background-color: #f2f2f2!important;
 }
+#userDropdown svg{
+    margin-right: .5rem;
+}
+#userDropdown{
+    text-transform: capitalize;
+}
+a#userDropdown.nav-link.dropdown-toggle::after {
+    margin-left: .5rem!important;
+}
 .dropdown-toggle.arrow-hidden::after{
     display: none;
 }
@@ -232,12 +241,8 @@ body{
         flex: 0 0 100%;
         max-width: 100%;
     }
-    .div-tambah div{
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-    .table-dashboard div.dataTables_wrapper div.dataTables_filter, .table-dashboard div.dataTables_wrapper div.dataTables_length {
-        text-align: center;
+    .table-dashboard div.dataTables_wrapper div.dataTables_filter label, .table-dashboard div.dataTables_wrapper div.dataTables_length {
+        text-align: center!important;
     }
     .div-jadwal .row div{
         text-align: center!important;
@@ -246,22 +251,28 @@ body{
         margin-bottom: 10px;
     }
 }
+@media screen and (max-width: 577px){
+    .div-tambah div{
+        flex: 0 0 50%;
+        max-width: 100%;
+    }
+}
 @media screen and (max-width: 547px){
     .div-tambah div{
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
     }
     .div-tambah div:nth-child(2){
         padding-top: 0.5rem;
         text-align: left!important;
     }
 }
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: right;
+div.dataTables_wrapper div.dataTables_filter label {
+    text-align: right!important;
 }
 @media screen and (max-width: 767px){
-    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter {
-        text-align: center;
+    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter label {
+        text-align: center!important;
     }
     .resp-m4{
         margin-top: 1.5rem;
@@ -309,4 +320,20 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 #modal_hapus .close:focus{
     outline: none;
+}
+.title-modal{
+    text-transform: lowercase;
+}
+
+@media screen and (max-width: 492px){
+    .div-sort .dropdown{
+        display: contents;
+    }
+    .div-sort{
+        text-align: center;
+    }
+    .btn-export.ml-2{
+        margin-left: 0!important;
+        margin-top: .5rem;
+    }
 }

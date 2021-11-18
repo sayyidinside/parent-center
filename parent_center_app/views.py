@@ -25,3 +25,9 @@ def dashboardAdmin(request):
 
 def dataSiswa(request):
     return render(request, 'parent_center_app/data_siswa.html', {'title':'Data Siswa'})
+
+def dataGuru(request):
+    return render(request, 'parent_center_app/data_guru.html', {'title':'Data Guru'})
+
+def dataOrangtua(request):
+    return render(request, 'parent_center_app/data_orangtua.html', {'title':'Data Orang Tua / Wali'})

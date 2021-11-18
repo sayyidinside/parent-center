@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="col-lg-5 col-sm-6 align-self-center text-right">
-        <a class="btn btn-light btn-tambah" href="/tambah_siswa"><i class="fas fa-plus-square"></i> Tambah Siswa</a>
+        <a class="btn btn-light btn-tambah" href="/tambah_orangtua"><i class="fas fa-plus-square"></i> Tambah Orang Tua / Wali</a>
     </div>
 </div>
 <hr class="dropdown-divider hr-title mb-4 mx-4 mt-3">
@@ -19,18 +19,7 @@
                 <div class="card-body card-dashboard">
                     <div class="row mx-0">
                         <div class="col-lg-12 px-0 div-sort">
-                            Lihat data siswa :
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="sort-by-class" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Semua Kelas
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="sort-by-class">
-                                    <button class="dropdown-item" type="button">X RPL 1</button>
-                                    <button class="dropdown-item" type="button">X RPL 2</button>
-                                    <button class="dropdown-item" type="button"> XI ANM 1</button>
-                                </div>
-                            </div>
-                            <button class="btn btn-light ml-2 btn-export"><i class="fas fa-download"></i> Export to Excel</button>
+                            <button class="btn btn-light"><i class="fas fa-download"></i> Export to Excel</button>
                         </div>
                     </div>
                     <div class="table-responsive table-siswa">
@@ -38,48 +27,44 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">NIS</th>
-                                    <th scope="col">NISN</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Kelas</th>
-                                    <th scope="col" class="text-center">Jenis Kelamin</th>
+                                    <th scope="col">Orang Tua / Wali</th>
+                                    <th scope="col">No. Telepon</th>
+                                    <th scope="col" style="width: 30%;">Alamat</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
+                                    <td>Udin Marudin</td>
+                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
+                                    <td>089999999999</td>
+                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
+                                    <td>Udin</td>
+                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
+                                    <td>089999999999</td>
+                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
+                                    <td>Udin</td>
+                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
+                                    <td>089999999999</td>
+                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
@@ -92,7 +77,7 @@
     </div>
 {% endblock content %}
 {% block keterangan %}
-    atas nama <b class="text-capitalize">Raidah Fakhirah Ramadhanie</b>
+    atas nama <b class="text-capitalize">Udin Marudin</b>
 {% endblock keterangan %}
 {% block footer %}
     <script>
