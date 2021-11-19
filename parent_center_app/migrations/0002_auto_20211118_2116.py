@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='mapel',
             name='id_mapel',
-            field=models.CharField(default=parent_center_app.utils.custom_id, max_length=10, primary_key=True, serialize=False, unique=True),
+            field=models.CharField(default=parent_center_app.utils.custom_mapel, max_length=10, primary_key=True, serialize=False, unique=True),
         ),
     ]
