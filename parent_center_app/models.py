@@ -95,12 +95,20 @@ class Guru(models.Model):
     email = models.EmailField(default="example@gmail.com")
     no_tlp = models.CharField(max_length=12)
     no_induk = models.CharField(max_length=20)
+    alamat = models.TextField(null=True)
+    class jns_kelamin(models.TextChoices):
+        P = 'Perempuan'
+        L = 'Laki-Laki'
+    jns_kelamin = models.CharField(max_length=10,
+                             choices=jns_kelamin.choices,
+                             default=jns_kelamin.L)
     id_user = models.ForeignKey(User,null=True,on_delete = models.SET_NULL)
     def __str__(self) :
         return '%s - %s ' % (self.no_induk,self.nama)
 
 class Siswa(models.Model):
     nis = models.CharField(max_length=15, null=True)
+    nisn = models.CharField(max_length=15, null=True)
     id_siswa = models.CharField(max_length=30,
                                 primary_key=True,
                                 unique=True,
@@ -174,6 +182,12 @@ class Absen(models.Model):
     id_guru = models.ForeignKey(Guru, null=True,on_delete = models.SET_NULL)
     tgl = models.DateField(default=date.today)
     pertemuan = models.IntegerField()
+    def __str__(self) :
+        return '%s %s %s | %s | Pertemuan ke %s | %s ' % (self.id_kelas.kelas,
+                                            self.id_kelas.jurusan,
+                                            self.id_kelas.no_kelas,
+                                            self.id_mapel.nama,
+                                            self.pertemuan,self.tgl )
 
 class DaftarAbsen(models.Model):
     id_absen = models.ForeignKey(Absen, on_delete=CASCADE)
@@ -187,6 +201,13 @@ class DaftarAbsen(models.Model):
     keterangan = models.CharField(max_length=10,
                                     choices=keterangan.choices,
                                     default=keterangan.H)
+    def __str__(self) :
+        return '%s %s %s | %s | Pertemuan ke %s | %s | %s | %s' % (self.id_absen.id_kelas.kelas,
+                                            self.id_absen.id_kelas.jurusan,
+                                            self.id_absen.id_kelas.no_kelas,
+                                            self.id_absen.id_mapel.nama,
+                                            self.id_absen.pertemuan,self.id_absen.tgl,
+                                            self.id_siswa.nama,self.keterangan )
 
 class PembayaranSPP(models.Model):
     id_pembayaran = models.CharField(max_length=30,
