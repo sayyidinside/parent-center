@@ -99,19 +99,3 @@
     </div>
 </div>
 {% endblock content %}
-{% block footer %}
-    <script>
-        $(document).ready(function(){
-            var x = document.getElementById("inputPassword");
-            $('#btnShowPassword').click(function(){
-                if (x.type === "password") {
-                    x.type = "text";
-                    $('#spanEye').attr('class', 'fas fa-eye-slash');
-                } else {
-                    x.type = "password";
-                    $('#spanEye').attr('class', 'fas fa-eye');
-                }
-            });
-        });
-    </script>
-{% endblock footer %}

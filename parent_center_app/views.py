@@ -39,6 +39,11 @@ def dataSiswa(request):
                   'parent_center_app/data_siswa.html',
                   {'title': 'Data Siswa'})
 
+@login_required(login_url='login')
+def tambahSiswa(request):
+    return render(request,
+                  'parent_center_app/tambah_siswa.html',
+                  {'title': 'Tambah Siswa'})
 
 @login_required(login_url='login')
 def dataGuru(request):

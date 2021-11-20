@@ -148,6 +148,20 @@
         
         <script src="//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+        <script>
+            $(document).ready(function(){
+                var x = document.getElementById("inputPassword");
+                $('#btnShowPassword').click(function(){
+                    if (x.type === "password") {
+                        x.type = "text";
+                        $('#spanEye').attr('class', 'fas fa-eye-slash');
+                    } else {
+                        x.type = "password";
+                        $('#spanEye').attr('class', 'fas fa-eye');
+                    }
+                });
+            });
+        </script>
         {% block footer %}
         {% endblock footer %}
     </body>
