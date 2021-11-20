@@ -22,7 +22,7 @@
             <div class="card-body card-custom">
                 <form method="post" name="tambah_guru" class="form-custom">
                     {% csrf_token %}
-                    <h6 class="subtitle-dashboard mx-4 mt-3 form-title"><span>Data Guru</span></h6>
+                    <h6 class="subtitle-dashboard mx-4 mt-4 form-title"><span>Data Guru</span></h6>
                     <div class="form-group row">
                         <label for="inputNip" class="col-sm-3 col-md-2 col-form-label">NIP/NIKKI</label>
                         <div class="col-sm-9 col-md-10">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     
-                    <h6 class="subtitle-dashboard mx-4 form-title"><span>Buat Akun</span></h6>
+                    <h6 class="subtitle-dashboard mx-4 form-title mt-2rem"><span>Buat Akun</span></h6>
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-3 col-md-2 col-form-label">Username</label>
                         <div class="col-sm-9 col-md-10">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-12 text-right">
+                        <div class="col-sm-12 text-right div-btn">
                             <a href="/data_guru" class="btn btn-light">Batal</a>
                             <input type="submit" class="btn btn-light btn-tambah" value="Tambah">
                         </div>

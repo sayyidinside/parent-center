@@ -292,7 +292,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     background-color: #66ad1f!important;
     border-color: #66ad1f!important;
 }
-.div-sort .dropdown{
+.div-sort select{
     display: inline-block;
 }
 .div-sort *{
@@ -326,15 +326,16 @@ div.dataTables_wrapper div.dataTables_filter label {
     text-transform: lowercase;
 }
 
-@media screen and (max-width: 492px){
-    .div-sort .dropdown{
-        display: contents;
+@media screen and (max-width: 567px){
+    .div-sort .btn-export{
+        display: block;
+        margin-left: auto!important;
+        margin-right: auto;
     }
     .div-sort{
         text-align: center;
     }
     .btn-export.ml-2{
-        margin-left: 0!important;
         margin-top: .5rem;
     }
 }
@@ -346,7 +347,6 @@ div.dataTables_wrapper div.dataTables_filter label {
     text-align: left; 
     border-bottom: 1px solid #57991a; 
     line-height: 0.1em;
-    margin-top: 2rem;
     margin-bottom: 2rem;
 } 
 
@@ -411,9 +411,39 @@ div.dataTables_wrapper div.dataTables_filter label {
 .select2-search__field:focus-visible, .select2-container--focus:focus-visible, .select2-selection.select2-selection--single{
     outline: none!important;
 }
-.select2.select2-container.select2-container--default{
+.div-sort .select2.select2-container.select2-container--default{
     width: 200px!important;
+}
+
+@media screen and (max-width: 359px){
+    .div-sort .select2.select2-container.select2-container--default{
+        width: auto!important;
+    }
 }
 .form-custom .select2.select2-container.select2-container--default{
     width: 100%!important;
+}
+@media screen and (max-width: 306px){
+    .form-title {
+        border-bottom: unset; 
+        line-height: unset;
+        margin-bottom: 0.95rem!important;
+    } 
+    .form-title.mt-4 {
+        margin-top: .8rem!important;
+    }
+    .form-title span { 
+        padding-right: unset; 
+    }
+}
+.mt-2rem{
+    margin-top: 2rem;
+}
+@media screen and (max-width: 575px){
+    .form-title {
+        margin-bottom: 1.5rem;
+    }
+    .form-custom .div-btn{
+        margin-top: .5rem;
+    }
 }
