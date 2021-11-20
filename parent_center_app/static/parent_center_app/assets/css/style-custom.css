@@ -337,3 +337,47 @@ div.dataTables_wrapper div.dataTables_filter label {
         margin-top: .5rem;
     }
 }
+.card-custom{
+    font-size: 14px!important;
+    color: #212529!important;
+}
+.form-title {
+    text-align: left; 
+    border-bottom: 1px solid #57991a; 
+    line-height: 0.1em;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+} 
+
+.form-title span { 
+    background:#fff; 
+    padding-right: 10px; 
+    font-size: 15px;
+    color: #57991a;
+}
+.form-custom .form-group *{
+    font-size: 14px;
+}
+.form-custom .btn{
+    width: 80px;
+}
+@media screen and (max-width: 343px){
+    .form-custom .form-jk .d-flex{
+        display: grid!important;
+    }
+}
+@media screen and (max-width: 301px){
+    .form-custom a.btn{
+        margin-bottom: 5px;
+    }
+}
+.form-custom button#btnShowPassword{
+    width: 40px;
+}
+.form-custom button#btnShowPassword:active{
+    outline: none!important;
+}
+.form-custom button#btnShowPassword:focus{
+    box-shadow: 0 0 0 0.2rem rgb(216 217 219 / 50%);
+    outline: none!important;
+}

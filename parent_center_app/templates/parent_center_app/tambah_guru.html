@@ -1,0 +1,117 @@
+{% extends 'parent_center_app/base.html' %}
+{% block breadcrumb %}
+<div class="row pt-4">
+    <div class="col-lg-12">
+        <div class="div-title">
+            <span class="title-content">{{title}}</span>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/data_guru">Data Guru</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<hr class="dropdown-divider hr-title mb-4 mx-4 mt-3">
+{% endblock breadcrumb %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body card-custom">
+                <form method="post" name="tambah_guru" class="form-custom">
+                    {% csrf_token %}
+                    <h6 class="subtitle-dashboard mx-4 mt-3 form-title"><span>Data Guru</span></h6>
+                    <div class="form-group row">
+                        <label for="inputNip" class="col-sm-3 col-md-2 col-form-label">NIP/NIKKI</label>
+                        <div class="col-sm-9 col-md-10">
+                            <input type="text" class="form-control" id="inputNip" name="no_induk" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
+                        <div class="col-sm-9 col-md-10">
+                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                        </div>
+                    </div>
+                    <div class="form-group row form-jk">
+                        <label class="col-sm-3 col-md-2 col-form-label">Jenis Kelamin</label>
+                        <div class="col-sm-9 col-md-10 d-flex">
+                            <div class="form-check form-check-inline align-self-center">
+                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="p" required>
+                                <label class="form-check-label" for="perempuan">Perempuan</label>
+                            </div>
+                            <div class="form-check form-check-inline align-self-center">
+                                <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="l" required>
+                                <label class="form-check-label" for="laki-laki">Laki-laki</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail" class="col-sm-3 col-md-2 col-form-label">Email</label>
+                        <div class="col-sm-9 col-md-10">
+                            <input type="email" class="form-control" id="inputEmail" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNoTlp" class="col-sm-3 col-md-2 col-form-label">No. Telepon</label>
+                        <div class="col-sm-9 col-md-10">
+                            <input type="telp" class="form-control" id="inputNoTlp" name="no_tlp" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputAlamat" class="col-sm-3 col-md-2 col-form-label">Alamat</label>
+                        <div class="col-sm-9 col-md-10">
+                            <textarea name="alamat" class="form-control" id="inputAlamat" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <h6 class="subtitle-dashboard mx-4 form-title"><span>Buat Akun</span></h6>
+                    <div class="form-group row">
+                        <label for="inputUsername" class="col-sm-3 col-md-2 col-form-label">Username</label>
+                        <div class="col-sm-9 col-md-10">
+                            <input type="text" class="form-control" id="inputUsername" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-3 col-md-2 col-form-label">Password</label>
+                        <div class="col-sm-9 col-md-10">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="inputPassword" required>
+                                <div class="input-group-append">
+                                  <button type="button" class="input-group-text" id="btnShowPassword">
+                                      <i class="fas fa-eye" id="spanEye"></i>
+                                  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12 text-right">
+                            <a href="/data_guru" class="btn btn-light">Batal</a>
+                            <input type="submit" class="btn btn-light btn-tambah" value="Tambah">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            var x = document.getElementById("inputPassword");
+            $('#btnShowPassword').click(function(){
+                if (x.type === "password") {
+                    x.type = "text";
+                    $('#spanEye').attr('class', 'fas fa-eye-slash');
+                } else {
+                    x.type = "password";
+                    $('#spanEye').attr('class', 'fas fa-eye');
+                }
+            });
+        });
+    </script>
+{% endblock footer %}

@@ -46,6 +46,11 @@ def dataGuru(request):
                   'parent_center_app/data_guru.html',
                   {'title': 'Data Guru'})
 
+@login_required(login_url='login')
+def tambahGuru(request):
+    return render(request,
+                  'parent_center_app/tambah_guru.html',
+                  {'title': 'Tambah Guru'})
 
 @login_required(login_url='login')
 def dataOrangtua(request):
