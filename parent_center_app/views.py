@@ -46,6 +46,12 @@ def tambahSiswa(request):
                   {'title': 'Tambah Siswa'})
 
 @login_required(login_url='login')
+def detailSiswa(request):
+    return render(request,
+                  'parent_center_app/detail_siswa.html',
+                  {'title': 'Detail Siswa'})
+
+@login_required(login_url='login')
 def dataGuru(request):
     return render(request,
                   'parent_center_app/data_guru.html',
@@ -58,6 +64,12 @@ def tambahGuru(request):
                   {'title': 'Tambah Guru'})
 
 @login_required(login_url='login')
+def detailGuru(request):
+    return render(request,
+                  'parent_center_app/detail_guru.html',
+                  {'title': 'Detail Guru'})
+
+@login_required(login_url='login')
 def dataOrangtua(request):
     return render(request,
                   'parent_center_app/data_orangtua.html',
@@ -68,3 +80,9 @@ def tambahOrangtua(request):
     return render(request,
                   'parent_center_app/tambah_orangtua.html',
                   {'title': 'Tambah Orang Tua / Wali'})
+
+@login_required(login_url='login')
+def detailOrangtua(request):
+    return render(request,
+                  'parent_center_app/detail_orangtua.html',
+                  {'title': 'Detail Orang Tua / Wali'})

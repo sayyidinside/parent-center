@@ -197,7 +197,7 @@ a#userDropdown.nav-link.dropdown-toggle::after {
     color: #57991a;
 }
 .scroll-div.h165{
-    height: 165px;
+    max-height: 165px;
     overflow-y: auto;
 }
 .scroll-div, .card-jml a{

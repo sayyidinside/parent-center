@@ -20,24 +20,24 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body card-custom">
-                <form method="post" name="tambah_siswa" class="form-custom">
+                <form method="post" name="edit_siswa" class="form-custom">
                     {% csrf_token %}
                     <div class="form-group row mt-3">
                         <label for="inputNis" class="col-sm-4 col-md-3 col-lg-2 col-form-label">NIS</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNis" name="nis" required>
+                            <input type="text" class="form-control" id="inputNis" name="nis" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNisn" class="col-sm-4 col-md-3 col-lg-2 col-form-label">NISN</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNisn" name="nisn" required>
+                            <input type="text" class="form-control" id="inputNisn" name="nisn" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNama" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Nama</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                            <input type="text" class="form-control" id="inputNama" name="nama" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -66,22 +66,22 @@
                     <div class="form-group row d-flex">
                         <label class="col-sm-4 col-md-3 col-lg-2 col-form-label">Tempat Tanggal Lahir</label>
                         <div class="col-sm-3 col-md-4 col-lg-5 align-self-center">
-                            <input type="text" class="form-control" id="tpt_lahir" name="tpt_lahir" required>
+                            <input type="text" class="form-control" id="tpt_lahir" name="tpt_lahir" value="" required>
                         </div>
                         <div class="col-sm-5 col-md-5 col-lg-5 align-self-center">
-                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" required>
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputAgama" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Agama</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputAgama" name="agama" required>
+                            <input type="text" class="form-control" id="inputAgama" name="agama" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNoTlp" class="col-sm-4 col-md-3 col-lg-2 col-form-label">No. Telepon</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="telp" class="form-control" id="inputNoTlp" name="no_tlp" required>
+                            <input type="telp" class="form-control" id="inputNoTlp" name="no_tlp" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -93,7 +93,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12 text-right div-btn">
                             <a href="/data_siswa" class="btn btn-light">Batal</a>
-                            <input type="submit" class="btn btn-light btn-tambah" value="Tambah">
+                            <input type="submit" class="btn btn-light btn-tambah" value="Simpan">
                         </div>
                     </div>
                 </form>
