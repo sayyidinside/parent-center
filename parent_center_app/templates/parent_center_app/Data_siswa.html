@@ -20,16 +20,11 @@
                     <div class="row mx-0">
                         <div class="col-lg-12 px-0 div-sort">
                             Lihat data siswa :
-                            <div class="dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="sort-by-class" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Semua Kelas
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="sort-by-class">
-                                    <button class="dropdown-item" type="button">X RPL 1</button>
-                                    <button class="dropdown-item" type="button">X RPL 2</button>
-                                    <button class="dropdown-item" type="button"> XI ANM 1</button>
-                                </div>
-                            </div>
+                            <select class="select2select" name="kelas" id="sort-by-class">
+                                <option value="">X RPL 1</option>
+                                <option value="">X RPL 2</option>
+                                <option value="">X RPL 3</option>
+                            </select>
                             <button class="btn btn-light ml-2 btn-export"><i class="fas fa-download"></i> Export to Excel</button>
                         </div>
                     </div>
@@ -98,6 +93,12 @@
     <script>
         $(document).ready(function(){
             $('#table-custom').DataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sort-by-class').select2();
         });
     </script>
 {% endblock footer %}

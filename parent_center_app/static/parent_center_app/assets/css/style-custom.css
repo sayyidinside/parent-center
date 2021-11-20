@@ -110,6 +110,7 @@ a#userDropdown.nav-link.dropdown-toggle::after {
     padding-left: 0;
     margin-bottom: 0;
     padding-bottom: 0;
+    font-size: 15px!important;
 }
 .div-title .breadcrumb-item a{
     font-size: 15px;
@@ -382,7 +383,37 @@ div.dataTables_wrapper div.dataTables_filter label {
     outline: none!important;
 }
 @media screen and (max-width: 576px){
-    form[name="tambah_siswa"] input#tgl_lahir, form[name="tambah_siswa"] select#jurusan, form[name="tambah_siswa"] select#no_kelas{
+    form[name="tambah_siswa"] input#tgl_lahir{
         margin-top: 5px;
     }
+}
+/* select2 */
+.select2-container--default .select2-selection--single{
+    height: 35px!important;
+    border: 1px solid #ced4da!important;
+}
+.select2select *, .select2-container--default .select2-results>.select2-results__options, .select2-search__field{
+    font-size: 14px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    line-height: 35px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 35px!important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered{
+    color: #212529!important;
+}
+.select2-dropdown{
+    z-index: 1035!important;
+    border: 1px solid #ced4da!important;
+}
+.select2-search__field:focus-visible, .select2-container--focus:focus-visible, .select2-selection.select2-selection--single{
+    outline: none!important;
+}
+.select2.select2-container.select2-container--default{
+    width: 200px!important;
+}
+.form-custom .select2.select2-container.select2-container--default{
+    width: 100%!important;
 }

@@ -62,3 +62,9 @@ def dataOrangtua(request):
     return render(request,
                   'parent_center_app/data_orangtua.html',
                   {'title': 'Data Orang Tua / Wali'})
+
+@login_required(login_url='login')
+def tambahOrangtua(request):
+    return render(request,
+                  'parent_center_app/tambah_orangtua.html',
+                  {'title': 'Tambah Orang Tua / Wali'})

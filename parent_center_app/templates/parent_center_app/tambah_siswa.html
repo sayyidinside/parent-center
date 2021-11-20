@@ -41,29 +41,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-md-3 col-lg-2 col-form-label">Kelas</label>
-                        <div class="col-sm-2 col-md-3 col-lg-3">
-                            <select name="kelas" id="kelas" class="custom-select">
-                                <option value="X">X</option>
-                                <option value="XI">XI</option>
-                                <option value="XII">XII</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4 col-md-3 col-lg-4">
-                            <select name="jurusan" id="jurusan" class="custom-select">
-                                <option value="TITL">Teknik Intalasi Tenaga Listrik</option>
-                                <option value="TP">Teknik Pemesinan</option>
-                                <option value="TKR">Teknik Kendaraan Ringan</option>
-                                <option value="TKJ">Teknik Komputer Jaringan</option>
-                                <option value="RPL">Rekayasa Perangkat Lunak</option>
-                                <option value="TBSM">Teknik dan Bisnis Sepeda Motor</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-2 col-md-3 col-lg-3">
-                            <select name="no_kelas" id="no_kelas" class="custom-select">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                        <label class="col-sm-4 col-md-3 col-lg-2 col-form-label" for="kelas">Kelas</label>
+                        <div class="col-sm-8 col-md-9 col-lg-10">
+                            <select class="select2select form-control" name="kelas" id="kelas">
+                                <option value="">X RPL 1</option>
+                                <option value="">X RPL 2</option>
+                                <option value="">X RPL 3</option>
                             </select>
                         </div>
                     </div>
@@ -119,3 +102,11 @@
     </div>
 </div>
 {% endblock content %}
+{% block footer %}
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2select').select2();
+        });
+    </script>
+{% endblock footer %}
