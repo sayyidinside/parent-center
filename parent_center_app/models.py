@@ -84,6 +84,8 @@ class Admin(models.Model):
     no_tlp = models.CharField(max_length=12)
     alamat = models.TextField(null=True)
     id_user = models.ForeignKey(User,null=True,on_delete = models.SET_NULL)
+    def __str__(self) :
+        return '%s | %s ' % (self.id_user.username,self.nama)
 
 class Guru(models.Model):
     id_guru = models.CharField(max_length=30,
