@@ -58,9 +58,7 @@ class Kelas(models.Model):
     no_kelas = models.SmallIntegerField(default=1)
 
     def __str__(self):
-        return '%s %s %s' % (self.kelas,
-                             self.jurusan,
-                             self.no_kelas)
+        return f'{self.kelas} {self.jurusan} {self.no_kelas}'
 
 
 class Extend_User(models.Model):
@@ -82,8 +80,7 @@ class Extend_User(models.Model):
                                   default=user_level.GURU)
 
     def __str__(self):
-        return '%s | %s ' % (self.user_level,
-                             self.user.username)
+        return f'{self.user_level} | {self.user.username}'
 
 
 class Admin(models.Model):
@@ -99,8 +96,7 @@ class Admin(models.Model):
     id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '%s | %s ' % (self.id_user.user.username,
-                             self.nama)
+        return f'{self.id_user.user.username} | {self.nama}'
 
 
 class Guru(models.Model):
@@ -124,8 +120,7 @@ class Guru(models.Model):
     id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '%s - %s ' % (self.no_induk,
-                             self.nama)
+        return f'{self.no_induk} - {self.nama}'
 
 
 class Siswa(models.Model):
@@ -152,8 +147,7 @@ class Siswa(models.Model):
     id_kelas = models.ForeignKey(Kelas, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '%s - %s ' % (self.nis,
-                             self.nama)
+        return f'{self.nis} - {self.nama}'
 
 
 class OrangTua(models.Model):
@@ -165,9 +159,7 @@ class OrangTua(models.Model):
     id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '%s | Orangtua %s - %s ' % (self.nama,
-                                           self.id_ortu.nis,
-                                           self.id_ortu.nama)
+        return f'{self.nama} | Orangtua dari {self.id_ortu.nama} - {self.id_ortu.nis}'
 
 
 class Tugas(models.Model):
@@ -183,12 +175,10 @@ class Tugas(models.Model):
     keterangan = models.TextField(null=True)
 
     def __str__(self):
-        return '%s | %s %s %s | %s | %s ' % (self.id_mapel.nama,
-                                             self.id_kelas.kelas,
-                                             self.id_kelas.jurusan,
-                                             self.id_kelas.no_kelas,
-                                             self.nama,
-                                             self.keterangan)
+        return f'''{self.id_mapel.nama} |
+                   {self.id_kelas.kelas} {self.id_kelas.jurusan} {self.id_kelas.no_kelas} |
+                   {self.nama} |
+                   {self.keterangan}'''
 
 
 class NilaiTugas(models.Model):
@@ -197,13 +187,12 @@ class NilaiTugas(models.Model):
     nilai = models.IntegerField()
 
     def __str__(self):
-        return '%s | %s %s %s | %s | %s | %s' % (self.id_tugas.id_mapel.nama,
-                                                 self.id_tugas.id_kelas.kelas,
-                                                 self.id_tugas.id_kelas.jurusan,
-                                                 self.id_tugas.id_kelas.no_kelas,
-                                                 self.id_tugas.nama,
-                                                 self.id_siswa.nama,
-                                                 self.nilai)
+        return f'''{self.id_tugas.id_mapel.nama} |
+                   {self.id_tugas.id_kelas.kelas} {self.id_tugas.id_kelas.jurusan}
+                   {self.id_tugas.id_kelas.no_kelas} |
+                   {self.id_tugas.nama} |
+                   {self.id_siswa.nama} |
+                   {self.nilai}'''
 
 
 class Absen(models.Model):
@@ -219,12 +208,10 @@ class Absen(models.Model):
     pertemuan = models.IntegerField()
 
     def __str__(self):
-        return '%s %s %s | %s | Pertemuan ke %s | %s ' % (self.id_kelas.kelas,
-                                                          self.id_kelas.jurusan,
-                                                          self.id_kelas.no_kelas,
-                                                          self.id_mapel.nama,
-                                                          self.pertemuan,
-                                                          self.tgl)
+        return f'''{self.id_kelas.kelas} {self.id_kelas.jurusan} {self.id_kelas.no_kelas} |
+                   {self.id_mapel.nama} |
+                   Pertemuan ke {self.pertemuan} |
+                   {self.tgl}'''
 
 
 class DaftarAbsen(models.Model):
@@ -242,14 +229,13 @@ class DaftarAbsen(models.Model):
                                   default=keterangan.H)
 
     def __str__(self):
-        return '%s %s %s | %s | Pertemuan ke %s | %s | %s | %s' % (self.id_absen.id_kelas.kelas,
-                                                                   self.id_absen.id_kelas.jurusan,
-                                                                   self.id_absen.id_kelas.no_kelas,
-                                                                   self.id_absen.id_mapel.nama,
-                                                                   self.id_absen.pertemuan,
-                                                                   self.id_absen.tgl,
-                                                                   self.id_siswa.nama,
-                                                                   self.keterangan)
+        return f'''{self.id_absen.id_kelas.kelas} {self.id_absen.id_kelas.no_kelas}
+                   {self.id_absen.id_kelas.jurusan} |
+                   {self.id_absen.id_mapel.nama} |
+                   Pertemuan ke {self.id_absen.pertemuan} |
+                   {self.id_absen.tgl} |
+                   {self.id_siswa.nama} |
+                   {self.keterangan}'''
 
 
 class PembayaranSPP(models.Model):
@@ -266,10 +252,10 @@ class PembayaranSPP(models.Model):
     semester = models.IntegerField()
 
     def __str__(self):
-        return '%s | Lunas Rp. %s | Tahun ajar %s | Semester %s' % (self.id_siswa.nama,
-                                                                    self.jumlah,
-                                                                    self.thn_ajar,
-                                                                    self.semester)
+        return f'''{self.id_siswa.nama} |
+                   Lunas Rp. {self.jumlah} |
+                   Tahun ajar {self.thn_ajar} |
+                   Semester {self.semester}'''
 
 
 class Jadwal(models.Model):
@@ -295,9 +281,7 @@ class Jadwal(models.Model):
     mapel_ke = models.IntegerField()
 
     def __str__(self):
-        return '%s %s %s | Hari %s | Jam Ke %s | Guru %s' % (self.id_kelas.kelas,
-                                                             self.id_kelas.jurusan,
-                                                             self.id_kelas.no_kelas,
-                                                             self.hari,
-                                                             self.mapel_ke,
-                                                             self.id_guru.nama)
+        return f'''{self.id_kelas.kelas} {self.id_kelas.jurusan} {self.id_kelas.no_kelas} |
+                   Hari {self.hari} |
+                   Jam Ke {self.mapel_ke} |
+                   Guru {self.id_guru.nama}'''

@@ -1,36 +1,48 @@
 from django.contrib import admin
-from .models import Jadwal, mapel, Kelas, Extend_User, Admin, Guru, Siswa, OrangTua, Tugas, NilaiTugas, Absen, DaftarAbsen, PembayaranSPP
+from .models import Jadwal, mapel, Kelas, Extend_User, Admin, Guru
+from .models import Siswa, OrangTua, Tugas, NilaiTugas, Absen, DaftarAbsen, PembayaranSPP
+
 
 # Register your models here.
 class MapelAdmin(admin.ModelAdmin):
-    readonly_fields=['id_mapel',]
+    readonly_fields = ['id_mapel', ]
+
 
 class ConAdmin(admin.ModelAdmin):
-    readonly_fields=['id_admin',]
+    readonly_fields = ['id_admin', ]
+
 
 class KelasAdmin(admin.ModelAdmin):
-    readonly_fields=['id_kelas',]
+    readonly_fields = ['id_kelas', ]
+
 
 class GuruAdmin(admin.ModelAdmin):
-    readonly_fields=['id_guru',]
+    readonly_fields = ['id_guru', ]
+
 
 class SiswaAdmin(admin.ModelAdmin):
-    readonly_fields=['id_siswa',]
+    readonly_fields = ['id_siswa', ]
+
 
 class UserAdmin(admin.ModelAdmin):
-    readonly_fields=['id_user',]
+    readonly_fields = ['id_user', ]
+
 
 class TugasAdmin(admin.ModelAdmin):
-    readonly_fields=['id_tugas',]
+    readonly_fields = ['id_tugas', ]
+
 
 class AbsenAdmin(admin.ModelAdmin):
-    readonly_fields=['id_absen',]
+    readonly_fields = ['id_absen', ]
+
 
 class SppAdmin(admin.ModelAdmin):
-    readonly_fields=['id_pembayaran',]
+    readonly_fields = ['id_pembayaran', ]
+
 
 class JadwalAdmin(admin.ModelAdmin):
-    readonly_fields=['id_jadwal',]
+    readonly_fields = ['id_jadwal', ]
+
 
 admin.site.register(mapel, MapelAdmin)
 admin.site.register(Admin, ConAdmin)
