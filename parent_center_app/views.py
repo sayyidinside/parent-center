@@ -86,3 +86,21 @@ def detailOrangtua(request):
     return render(request,
                   'parent_center_app/detail_orangtua.html',
                   {'title': 'Detail Orang Tua / Wali'})
+
+@login_required(login_url='login')
+def dataMapel(request):
+    return render(request,
+                  'parent_center_app/data_mapel.html',
+                  {'title': 'Mata Pelajaran'})
+
+@login_required(login_url='login')
+def dataKelas(request):
+    return render(request,
+                  'parent_center_app/data_kelas.html',
+                  {'title': 'Kelas'})
+
+@login_required(login_url='login')
+def profileAdmin(request):
+    return render(request,
+                  'parent_center_app/profile_admin.html',
+                  {'title': 'Profile'})

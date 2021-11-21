@@ -1,0 +1,172 @@
+{% extends 'parent_center_app/base.html' %}
+{% block breadcrumb %}
+<div class="row d-flex pt-4 div-tambah">
+    <div class="col-lg-7 col-sm-6">
+        <div class="div-title">
+            <span class="title-content">{{title}}</span>
+        </div>
+    </div>
+    <div class="col-lg-5 col-sm-6 align-self-center text-right">
+        <button class="btn btn-light btn-tambah" type="button" data-toggle="modal" data-target="#modal_tambah_kelas"><i class="fas fa-plus-square"></i> Tambah {{title}}</button>
+    </div>
+</div>
+<hr class="dropdown-divider hr-title mb-4 mx-4 mt-3">
+{% endblock breadcrumb %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body card-dashboard">
+                    <div class="row mx-0">
+                        <div class="col-lg-12 px-0 div-sort">
+                            <button class="btn btn-light"><i class="fas fa-download"></i> Export to Excel</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive table-kelas">
+                        <table class="table table table-striped table-siswa custom-width-th" id="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Kelas</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>X RPL 1</td>
+                                    <td>
+                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_kelas"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>X RPL 2</td>
+                                    <td>
+                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_kelas"><i class="fas fa-pencil-alt"></i></button>
+                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal -->
+    <div class="modal fade" id="modal_tambah_kelas" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0 d-flex">
+                    <i class="fas fa-plus-square align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Tambah Kelas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" name="tambah_mapel" class="form-custom">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="kelas" class="col-md-3 col-form-label">Kelas</label>
+                            <div class="col-md-9">
+                                <select name="kelas" id="kelas" class="form-control">
+                                    <option value="X">X</option>
+                                    <option value="XI">XI</option>
+                                    <option value="XII">XII</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jurusan" class="col-md-3 col-form-label">Jurusan</label>
+                            <div class="col-md-9">
+                                <select name="jurusan" id="jurusan" class="form-control">
+                                    <option value="TITL">Teknik Instalasi Tenaga Listrik</option>
+                                    <option value="TP">Teknik Pemesinan</option>
+                                    <option value="TKR">Teknik Kendaraan Ringan</option>
+                                    <option value="TKJ">Teknik Komputer Jaringan</option>
+                                    <option value="RPL">Rekayasa Perangkat Lunak</option>
+                                    <option value="TBSM">Teknik dan Bisnis Sepeda Motor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="no_kelas" class="col-md-3 col-form-label">Nomor Kelas</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="no_kelas" name="no_kelas" min="1" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 p125">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-light btn-tambah">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_edit_kelas" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0 d-flex">
+                    <i class="fas fa-pencil-alt align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Ubah Kelas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" name="ubah_mapel" class="form-custom">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="kelas" class="col-md-3 col-form-label">Kelas</label>
+                            <div class="col-md-9">
+                                <select name="kelas" id="kelas" class="form-control">
+                                    <option value="X">X</option>
+                                    <option value="XI">XI</option>
+                                    <option value="XII">XII</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="jurusan" class="col-md-3 col-form-label">Jurusan</label>
+                            <div class="col-md-9">
+                                <select name="jurusan" id="jurusan" class="form-control">
+                                    <option value="TITL">Teknik Instalasi Tenaga Listrik</option>
+                                    <option value="TP">Teknik Pemesinan</option>
+                                    <option value="TKR">Teknik Kendaraan Ringan</option>
+                                    <option value="TKJ">Teknik Komputer Jaringan</option>
+                                    <option value="RPL">Rekayasa Perangkat Lunak</option>
+                                    <option value="TBSM">Teknik dan Bisnis Sepeda Motor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="no_kelas" class="col-md-3 col-form-label">Nomor Kelas</label>
+                            <div class="col-md-9">
+                                <input type="number" class="form-control" id="no_kelas" name="no_kelas" min="1" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 p125">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-light btn-tambah">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+{% block keterangan %}
+    <b>X RPL 1</b>
+{% endblock keterangan %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable();
+        });
+    </script>
+{% endblock footer %}

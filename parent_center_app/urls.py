@@ -14,5 +14,8 @@ urlpatterns = [
     path('data_orangtua/', views.dataOrangtua, name='data orang tua'),
     path('tambah_orangtua/', views.tambahOrangtua, name='tambah orangtua'),
     path('detail_orangtua/', views.detailOrangtua, name='detail orangtua'),
+    path('data_mapel/', views.dataMapel, name='data mapel'),
+    path('data_kelas/', views.dataKelas, name='data kelas'),
+    path('profile_admin/', views.profileAdmin, name='profile admin'),
     path('logout/', views.logout_user, name='logout'),
 ]

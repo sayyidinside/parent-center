@@ -302,24 +302,24 @@ div.dataTables_wrapper div.dataTables_filter label {
 .btn-light{
     border: 1px solid #e2e6ea!important;
 }
-#modal_hapus .modal-header h5{
+.modal-header h5{
     font-size: 15px;
     text-transform: uppercase;
     margin-left: 10px;
     font-weight: bold;
     color: #57991a;
 }
-#modal_hapus .modal-header svg{
+.modal-header svg{
     font-size: 20px;
     color: #686a7d;
 }
-#modal_hapus .modal-body{
+.modal-body{
     font-size: 14px;
 }
-#modal_hapus .modal-footer button{
+.modal-footer button{
     font-size: 14px;
 }
-#modal_hapus .close:focus{
+.close:focus{
     outline: none;
 }
 .title-modal{
@@ -445,5 +445,25 @@ div.dataTables_wrapper div.dataTables_filter label {
     }
     .form-custom .div-btn{
         margin-top: .5rem;
+    }
+}
+.p125{
+    padding-right: 1.25rem!important;
+}
+.table-mapel table tbody tr td, .table-kelas table tbody tr td{
+    vertical-align: middle;
+}
+.custom-width-th th:nth-child(1){
+    width: 5%;
+}
+.custom-width-th th:nth-child(3){
+    width: 25%!important;
+}
+button[data-toggle="modal"] svg.fa-pencil-alt {
+    width: 12.25px!important;
+}
+@media screen and (max-width: 507px){
+    .custom-width-th th:nth-child(3){
+        width: 40%!important;
     }
 }

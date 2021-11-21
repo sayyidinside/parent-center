@@ -26,7 +26,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i>{{ request.user }}</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown" id="ddUser">
-                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <a class="dropdown-item" href="/profile_admin">Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     </div>
                 </li>
@@ -38,7 +38,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <!-- Divider -->
-                            <a class="navbar-brand d-flex align-self-center align-items-center" href="/dashboard">
+                            <a class="navbar-brand d-flex align-self-center align-items-center" href="/dashboard_admin">
                                 ParentCenter
                             </a>
                             <div class="dropdown-divider mx-3 mt-0"></div>
@@ -117,8 +117,8 @@
         <div class="modal fade" id="modal_hapus" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <i class="fas fa-trash-alt"></i> <h5 class="modal-title" id="ModalLabel">Hapus {{title}}</h5>
+                    <div class="modal-header border-0 d-flex">
+                        <i class="fas fa-trash-alt align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Hapus {{title}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
