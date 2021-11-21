@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Jadwal, mapel, Kelas, User, Admin, Guru, Siswa, OrangTua, Tugas, NilaiTugas, Absen, DaftarAbsen, PembayaranSPP
+from .models import Jadwal, mapel, Kelas, Extend_User, Admin, Guru, Siswa, OrangTua, Tugas, NilaiTugas, Absen, DaftarAbsen, PembayaranSPP
 
 # Register your models here.
 class MapelAdmin(admin.ModelAdmin):
@@ -38,7 +38,7 @@ admin.site.register(Kelas, KelasAdmin)
 admin.site.register(Guru, GuruAdmin)
 admin.site.register(Siswa, SiswaAdmin)
 admin.site.register(OrangTua)
-admin.site.register(User, UserAdmin)
+admin.site.register(Extend_User, UserAdmin)
 admin.site.register(Tugas, TugasAdmin)
 admin.site.register(Absen, AbsenAdmin)
 admin.site.register(PembayaranSPP, SppAdmin)

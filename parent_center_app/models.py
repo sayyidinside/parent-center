@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from .utils import custom_jadwal, custom_user, custom_absen, custom_adm, custom_guru
 from .utils import custom_kelas, custom_mapel, custom_siswa, custom_spp, custom_tugas
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -62,26 +63,27 @@ class Kelas(models.Model):
                              self.no_kelas)
 
 
-class User(models.Model):
+class Extend_User(models.Model):
+    user = models.OneToOneField(User,
+                                null=True,
+                                on_delete=models.CASCADE)
     id_user = models.CharField(max_length=30,
                                primary_key=True,
                                unique=True,
                                default=custom_user,
                                editable=False)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
 
     class user_level(models.TextChoices):
         ADMIN = 'Admin'
         GURU = 'Guru'
-        ORTU = 'OrangTua'
+        ORTU = 'Orang Tua'
     user_level = models.CharField(max_length=10,
                                   choices=user_level.choices,
                                   default=user_level.GURU)
 
     def __str__(self):
         return '%s | %s ' % (self.user_level,
-                             self.username)
+                             self.user.username)
 
 
 class Admin(models.Model):
@@ -94,10 +96,10 @@ class Admin(models.Model):
     email = models.EmailField(default="example@gmail.com")
     no_tlp = models.CharField(max_length=12)
     alamat = models.TextField(null=True)
-    id_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '%s | %s ' % (self.id_user.username,
+        return '%s | %s ' % (self.id_user.user.username,
                              self.nama)
 
 
@@ -119,7 +121,7 @@ class Guru(models.Model):
     jns_kelamin = models.CharField(max_length=10,
                                    choices=jns_kelamin.choices,
                                    default=jns_kelamin.L)
-    id_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return '%s - %s ' % (self.no_induk,
@@ -160,7 +162,7 @@ class OrangTua(models.Model):
     keterangan = models.CharField(max_length=50)
     no_tlp = models.CharField(max_length=13)
     alamat = models.TextField(null=True)
-    id_user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    id_user = models.ForeignKey(Extend_User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return '%s | Orangtua %s - %s ' % (self.nama,
@@ -262,6 +264,12 @@ class PembayaranSPP(models.Model):
     jumlah = models.IntegerField()
     thn_ajar = models.IntegerField()
     semester = models.IntegerField()
+
+    def __str__(self):
+        return '%s | Lunas Rp. %s | Tahun ajar %s | Semester %s' % (self.id_siswa.nama,
+                                                                    self.jumlah,
+                                                                    self.thn_ajar,
+                                                                    self.semester)
 
 
 class Jadwal(models.Model):
