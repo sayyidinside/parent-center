@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from .models import Guru, Siswa
 
 # Create your views here.
 def login_user(request):
@@ -28,9 +28,20 @@ def logout_user(request):
 
 @login_required(login_url='login')
 def dashboardAdmin(request):
+    jml_siswa_x = Siswa.objects.filter(id_kelas__kelas='X').count()
+    jml_siswa_xi = Siswa.objects.filter(id_kelas__kelas='XI').count()
+    jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
+    jml_guru = Guru.objects.count()
+    context = {
+        'title': 'Dashboard',
+        'Jml_guru': jml_guru,
+        'Jml_siswa_x':jml_siswa_x,
+        'Jml_siswa_xi':jml_siswa_xi,
+        'Jml_siswa_xii':jml_siswa_xii,
+    }
     return render(request,
                   'parent_center_app/dashboard_admin.html',
-                  {'title': 'Dashboard'})
+                  context)
 
 
 @login_required(login_url='login')
