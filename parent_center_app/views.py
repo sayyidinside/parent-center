@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Siswa
+from .models import Guru, Kelas, Siswa
 
 # Create your views here.
 def login_user(request):
@@ -32,12 +32,14 @@ def dashboardAdmin(request):
     jml_siswa_xi = Siswa.objects.filter(id_kelas__kelas='XI').count()
     jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
     jml_guru = Guru.objects.count()
+    kelass = Kelas.objects.all()
     context = {
         'title': 'Dashboard',
         'Jml_guru': jml_guru,
         'Jml_siswa_x':jml_siswa_x,
         'Jml_siswa_xi':jml_siswa_xi,
         'Jml_siswa_xii':jml_siswa_xii,
+        'Kelass':kelass,
     }
     return render(request,
                   'parent_center_app/dashboard_admin.html',

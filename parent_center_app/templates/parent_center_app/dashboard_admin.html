@@ -91,8 +91,25 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for kelas in Kelass %}
                                 <tr>
-                                    <td>X RPL 1</td>
+                                    <td>
+                                        {{ kelas.kelas }} 
+                                            {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
+                                                RPL
+                                            {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
+                                                TKJ
+                                            {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
+                                                TITL
+                                            {% elif kelas.jurusan == "Teknik Pemesinan" %}
+                                                TP
+                                            {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
+                                                TKR
+                                            {% else %}
+                                                TBSM
+                                            {% endif %}
+                                        {{ kelas.no_kelas }}
+                                    </td>
                                     <td>
                                         <ol>
                                             <li>Bahasa Indonesia</li>
@@ -115,54 +132,7 @@
                                         </ol>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>X RPL 2</td>
-                                    <td>
-                                        <ol>
-                                            <li>Bahasa Indonesia</li>
-                                            <li>Pemrograman Dasar</li>
-                                            <li>Bahasa Inggris</li>
-                                        </ol>
-                                    </td>
-                                    <td>
-                                        <ol>
-                                            <li>Ibu A</li>
-                                            <li>Bapak B</li>
-                                            <li>Ibu C</li>
-                                        </ol>
-                                    </td>
-                                    <td>
-                                        <ol>
-                                            <li>07.30 - 09.00</li>
-                                            <li>09.00 - 11.00</li>
-                                            <li>11.00 - 12.00</li>
-                                        </ol>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>X RPL 3</td>
-                                    <td>
-                                        <ol>
-                                            <li>Bahasa Indonesia</li>
-                                            <li>Pemrograman Dasar</li>
-                                            <li>Bahasa Inggris</li>
-                                        </ol>
-                                    </td>
-                                    <td>
-                                        <ol>
-                                            <li>Ibu A</li>
-                                            <li>Bapak B</li>
-                                            <li>Ibu C</li>
-                                        </ol>
-                                    </td>
-                                    <td>
-                                        <ol>
-                                            <li>07.30 - 09.00</li>
-                                            <li>09.00 - 11.00</li>
-                                            <li>11.00 - 12.00</li>
-                                        </ol>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
