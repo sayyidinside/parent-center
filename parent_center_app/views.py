@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Guru, Kelas, Siswa
 
+
 # Create your views here.
 def login_user(request):
     if request.user.is_authenticated:
@@ -52,11 +53,13 @@ def dataSiswa(request):
                   'parent_center_app/data_siswa.html',
                   {'title': 'Data Siswa'})
 
+
 @login_required(login_url='login')
 def tambahSiswa(request):
     return render(request,
                   'parent_center_app/tambah_siswa.html',
                   {'title': 'Tambah Siswa'})
+
 
 @login_required(login_url='login')
 def detailSiswa(request):
@@ -64,11 +67,13 @@ def detailSiswa(request):
                   'parent_center_app/detail_siswa.html',
                   {'title': 'Detail Siswa'})
 
+
 @login_required(login_url='login')
 def dataGuru(request):
     return render(request,
                   'parent_center_app/data_guru.html',
                   {'title': 'Data Guru'})
+
 
 @login_required(login_url='login')
 def tambahGuru(request):
@@ -76,11 +81,13 @@ def tambahGuru(request):
                   'parent_center_app/tambah_guru.html',
                   {'title': 'Tambah Guru'})
 
+
 @login_required(login_url='login')
 def detailGuru(request):
     return render(request,
                   'parent_center_app/detail_guru.html',
                   {'title': 'Detail Guru'})
+
 
 @login_required(login_url='login')
 def dataOrangtua(request):
@@ -88,11 +95,13 @@ def dataOrangtua(request):
                   'parent_center_app/data_orangtua.html',
                   {'title': 'Data Orang Tua / Wali'})
 
+
 @login_required(login_url='login')
 def tambahOrangtua(request):
     return render(request,
                   'parent_center_app/tambah_orangtua.html',
                   {'title': 'Tambah Orang Tua / Wali'})
+
 
 @login_required(login_url='login')
 def detailOrangtua(request):
@@ -100,17 +109,20 @@ def detailOrangtua(request):
                   'parent_center_app/detail_orangtua.html',
                   {'title': 'Detail Orang Tua / Wali'})
 
+
 @login_required(login_url='login')
 def dataMapel(request):
     return render(request,
                   'parent_center_app/data_mapel.html',
                   {'title': 'Mata Pelajaran'})
 
+
 @login_required(login_url='login')
 def dataKelas(request):
     return render(request,
                   'parent_center_app/data_kelas.html',
                   {'title': 'Kelas'})
+
 
 @login_required(login_url='login')
 def profileAdmin(request):
