@@ -16,11 +16,13 @@ class mapel(models.Model):
     nama = models.CharField(max_length=50)
 
     class jenis_mapel(models.TextChoices):
-        C1 = 'C1'
-        C2 = 'C2'
-        C3 = 'C3'
+        A = 'Muatan Nasional'
+        B = 'Muatan Kewilayahan'
+        C1 = 'Muatan Peminatan Kejuruan'
+        C2 = 'Dasar Program Keahlian'
+        C3 = 'Kompetensi Keahlian'
 
-    jenis = models.CharField(max_length=2,
+    jenis = models.CharField(max_length=30,
                              choices=jenis_mapel.choices,
                              default=jenis_mapel.C1)
 
