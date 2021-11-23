@@ -146,34 +146,29 @@
                     <h6 class="title-user-online">Admin</h6>
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        {% for admin in admin_active %}
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ admin.username }}</li>
+                        {% endfor %}
                         </ul>
+                        <br>
                     </div>
                     
                     <h6 class="title-user-online">Guru</h6>
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        {% for guru in guru_active %}
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ guru.username }}</li>
+                        {% endfor %}
                         </ul>
+                        <br>
                     </div>
 
                     <h6 class="title-user-online">Orang tua / Wali</h6>
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Cras justo odio</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Dapibus ac facilisis in</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Morbi leo risus</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Porta ac consectetur ac</li>
-                            <li class="list-group-item"><i class="fas fa-circle"></i> Vestibulum at eros</li>
+                        {% for ortu in ortu_active %}
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ ortu.username }}</li>
+                        {% endfor %}
                         </ul>
                     </div>
                 </div>

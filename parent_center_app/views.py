@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Guru, Kelas, OrangTua, Siswa
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 # Create your views here.
@@ -33,15 +35,22 @@ def dashboardAdmin(request):
     jml_siswa_xi = Siswa.objects.filter(id_kelas__kelas='XI').count()
     jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
     jml_guru = Guru.objects.count()
-    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
+    kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
+
+    time_limit = timezone.now() - timezone.timedelta(hours=3)
+    admin_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Admin').order_by('last_login').reverse()
+    guru_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Guru').order_by('last_login').reverse()
+    ortu_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Orang Tua').order_by('last_login').reverse()
     context = {
         'title': 'Dashboard',
         'Jml_guru': jml_guru,
-        'Jml_siswa_x':jml_siswa_x,
-        'Jml_siswa_xi':jml_siswa_xi,
-        'Jml_siswa_xii':jml_siswa_xii,
-        'Kelass':kelass,
-    }
+        'Jml_siswa_x': jml_siswa_x,
+        'Jml_siswa_xi': jml_siswa_xi,
+        'Jml_siswa_xii': jml_siswa_xii,
+        'Kelass': kelass,
+        'admin_active': admin_active,
+        'guru_active': guru_active,
+        'ortu_active': ortu_active}
     return render(request,
                   'parent_center_app/dashboard_admin.html',
                   context)
@@ -50,11 +59,11 @@ def dashboardAdmin(request):
 @login_required(login_url='login')
 def dataSiswa(request):
     siswas = Siswa.objects.all()
-    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
-    context ={
+    kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
+    context = {
         'title': 'Data Siswa',
-        'Siswas' : siswas,
-        'Kelass' : kelass,
+        'Siswas': siswas,
+        'Kelass': kelass,
     }
     return render(request,
                   'parent_center_app/data_siswa.html',
@@ -80,7 +89,7 @@ def dataGuru(request):
     gurus = Guru.objects.all()
     context = {
         'title': 'Data Guru',
-        'Gurus' : gurus,
+        'Gurus': gurus,
     }
     return render(request,
                   'parent_center_app/data_guru.html',
@@ -106,7 +115,7 @@ def dataOrangtua(request):
     orangTuas = OrangTua.objects.all()
     context = {
         'title': 'Data Orang Tua / Wali',
-        'OrangTuas' : orangTuas,
+        'OrangTuas': orangTuas,
     }
     return render(request,
                   'parent_center_app/data_orangtua.html',
@@ -147,17 +156,20 @@ def profileAdmin(request):
                   'parent_center_app/profile_admin.html',
                   {'title': 'Profile'})
 
+
 @login_required(login_url='login')
 def cariSpp(request):
     return render(request,
                   'parent_center_app/cari_spp.html',
                   {'title': 'Data SPP'})
 
+
 @login_required(login_url='login')
 def bayarSpp(request):
     return render(request,
                   'parent_center_app/tambah_spp.html',
                   {'title': 'Bayar SPP'})
+
 
 @login_required(login_url='login')
 def dataSpp(request):
