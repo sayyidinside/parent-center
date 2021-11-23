@@ -18,4 +18,7 @@ urlpatterns = [
     path('data_kelas/', views.dataKelas, name='data kelas'),
     path('profile_admin/', views.profileAdmin, name='profile admin'),
     path('logout/', views.logout_user, name='logout'),
+    path('cari_spp/', views.cariSpp, name='data spp'),
+    path('tambah_spp/', views.bayarSpp, name='bayar spp'),
+    path('data_spp/', views.dataSpp, name='data spp'),
 ]

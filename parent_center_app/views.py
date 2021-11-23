@@ -129,3 +129,21 @@ def profileAdmin(request):
     return render(request,
                   'parent_center_app/profile_admin.html',
                   {'title': 'Profile'})
+
+@login_required(login_url='login')
+def cariSpp(request):
+    return render(request,
+                  'parent_center_app/cari_spp.html',
+                  {'title': 'Data SPP'})
+
+@login_required(login_url='login')
+def bayarSpp(request):
+    return render(request,
+                  'parent_center_app/tambah_spp.html',
+                  {'title': 'Bayar SPP'})
+
+@login_required(login_url='login')
+def dataSpp(request):
+    return render(request,
+                  'parent_center_app/data_spp.html',
+                  {'title': 'Data SPP X RPL 1'})

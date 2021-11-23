@@ -467,3 +467,9 @@ button[data-toggle="modal"] svg.fa-pencil-alt {
         width: 40%!important;
     }
 }
+.data_spp .subtitle-dashboard{
+    color: #57991a;
+}
+.data_spp svg{
+    color: #fff!important;
+}
