@@ -147,7 +147,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for admin in admin_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ admin.username }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ admin.extend_user.admin.nama }}</li>
                         {% endfor %}
                         </ul>
                         <br>
@@ -157,7 +157,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for guru in guru_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ guru.username }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ guru.extend_user.guru.nama }}</li>
                         {% endfor %}
                         </ul>
                         <br>
@@ -167,7 +167,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for ortu in ortu_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ ortu.username }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ ortu.extend_user.orangtua.nama }}</li>
                         {% endfor %}
                         </ul>
                     </div>

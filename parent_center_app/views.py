@@ -38,9 +38,15 @@ def dashboardAdmin(request):
     kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
 
     time_limit = timezone.now() - timezone.timedelta(hours=3)
-    admin_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Admin').order_by('last_login').reverse()
-    guru_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Guru').order_by('last_login').reverse()
-    ortu_active = User.objects.filter(last_login__gte=time_limit, extend_user__user_level='Orang Tua').order_by('last_login').reverse()
+    admin_active = User.objects.filter(last_login__gte=time_limit,
+                                       extend_user__user_level='Admin'
+                                       ).order_by('last_login').reverse()[:5]
+    guru_active = User.objects.filter(last_login__gte=time_limit,
+                                      extend_user__user_level='Guru'
+                                      ).order_by('last_login').reverse()[:5]
+    ortu_active = User.objects.filter(last_login__gte=time_limit,
+                                      extend_user__user_level='Orang Tua'
+                                      ).order_by('last_login').reverse()[:5]
     context = {
         'title': 'Dashboard',
         'Jml_guru': jml_guru,
