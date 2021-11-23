@@ -35,39 +35,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for guru in Gurus %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>123456789101</td>
-                                    <td>Nabilah</td>
-                                    <td>081234567182</td>
-                                    <td>nabilah9626@gmail.com</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{guru.no_induk}}</td>
+                                    <td>{{guru.nama}}</td>
+                                    <td>{{guru.no_tlp}}</td>
+                                    <td>{{guru.email}}</td>
                                     <td>
                                         <a class="btn btn-light" href="/detail_guru"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>123456789101</td>
-                                    <td>Nabilah</td>
-                                    <td>081234567182</td>
-                                    <td>nabilah9626@gmail.com</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_guru"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>123456789101</td>
-                                    <td>Nabilah</td>
-                                    <td>081234567182</td>
-                                    <td>nabilah9626@gmail.com</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_guru"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

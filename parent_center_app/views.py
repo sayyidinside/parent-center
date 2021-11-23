@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Kelas, Siswa
+from .models import Guru, Kelas, OrangTua, Siswa
 
 
 # Create your views here.
@@ -33,7 +33,7 @@ def dashboardAdmin(request):
     jml_siswa_xi = Siswa.objects.filter(id_kelas__kelas='XI').count()
     jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
     jml_guru = Guru.objects.count()
-    kelass = Kelas.objects.all()
+    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
     context = {
         'title': 'Dashboard',
         'Jml_guru': jml_guru,
@@ -49,9 +49,16 @@ def dashboardAdmin(request):
 
 @login_required(login_url='login')
 def dataSiswa(request):
+    siswas = Siswa.objects.all()
+    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
+    context ={
+        'title': 'Data Siswa',
+        'Siswas' : siswas,
+        'Kelass' : kelass,
+    }
     return render(request,
                   'parent_center_app/data_siswa.html',
-                  {'title': 'Data Siswa'})
+                  context)
 
 
 @login_required(login_url='login')
@@ -70,9 +77,14 @@ def detailSiswa(request):
 
 @login_required(login_url='login')
 def dataGuru(request):
+    gurus = Guru.objects.all()
+    context = {
+        'title': 'Data Guru',
+        'Gurus' : gurus,
+    }
     return render(request,
                   'parent_center_app/data_guru.html',
-                  {'title': 'Data Guru'})
+                  context)
 
 
 @login_required(login_url='login')
@@ -91,9 +103,14 @@ def detailGuru(request):
 
 @login_required(login_url='login')
 def dataOrangtua(request):
+    orangTuas = OrangTua.objects.all()
+    context = {
+        'title': 'Data Orang Tua / Wali',
+        'OrangTuas' : orangTuas,
+    }
     return render(request,
                   'parent_center_app/data_orangtua.html',
-                  {'title': 'Data Orang Tua / Wali'})
+                  context)
 
 
 @login_required(login_url='login')

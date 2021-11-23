@@ -35,39 +35,40 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for orangTua in OrangTuas %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Udin Marudin</td>
-                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
-                                    <td>089999999999</td>
-                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{orangTua.nama}}</td>
+                                    <td>
+                                        <a href="/detail_siswa">
+                                            {{orangTua.id_ortu.nama}}
+                                            (
+                                                {{orangTua.id_ortu.id_kelas.kelas}}
+                                                    {% if orangTua.id_ortu.id_kelas.jurusan == "Rekayasa Perangkat Lunak" %}
+                                                        RPL
+                                                    {% elif orangTua.id_ortu.id_kelas.jurusan == "Teknik Komputer Jaringan" %}
+                                                        TKJ
+                                                    {% elif orangTua.id_ortu.id_kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
+                                                        TITL
+                                                    {% elif orangTua.id_ortu.id_kelas.jurusan == "Teknik Pemesinan" %}
+                                                        TP
+                                                    {% elif orangTua.id_ortu.id_kelas.jurusan == "Teknik Kendaraan Ringan" %}
+                                                        TKR
+                                                    {% else %}
+                                                        TBSM
+                                                    {% endif %}
+                                                {{ orangTua.id_ortu.id_kelas.no_kelas }}
+                                            )
+                                        </a>
+                                    </td>
+                                    <td>{{orangTua.no_tlp}}</td>
+                                    <td>{{orangTua.alamat}}</td>
                                     <td>
                                         <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Udin</td>
-                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
-                                    <td>089999999999</td>
-                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Udin</td>
-                                    <td><a href="/detail_siswa">Nabilah (X RPL 1)</a></td>
-                                    <td>089999999999</td>
-                                    <td>Kav. H. Hamidi Jl. H. Solihin RT.07/RW.14 NO.20 Kebalen Babelan Bekasi 17610</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

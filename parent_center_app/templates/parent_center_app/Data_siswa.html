@@ -21,9 +21,26 @@
                         <div class="col-lg-12 px-0 div-sort">
                             Lihat data siswa :
                             <select class="select2select" name="kelas" id="sort-by-class">
-                                <option value="">X RPL 1</option>
-                                <option value="">X RPL 2</option>
-                                <option value="">X RPL 3</option>
+                                <option value="">Semua</option>
+                                {% for kelas in Kelass %}
+                                <option value="">
+                                    {{ kelas.kelas }} 
+                                    {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
+                                        RPL
+                                    {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
+                                        TKJ
+                                    {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
+                                        TITL
+                                    {% elif kelas.jurusan == "Teknik Pemesinan" %}
+                                        TP
+                                    {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
+                                        TKR
+                                    {% else %}
+                                        TBSM
+                                    {% endif %}
+                                    {{ kelas.no_kelas }}
+                                </option>
+                                {% endfor %}
                             </select>
                             <button class="btn btn-light ml-2 btn-export"><i class="fas fa-download"></i> Export to Excel</button>
                         </div>
@@ -42,42 +59,42 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for siswa in Siswas %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{siswa.nis}}</td>
+                                    <td>{{siswa.nisn}}</td>
+                                    <td>{{siswa.nama}}</td>
+                                    <td>
+                                        {{siswa.id_kelas.kelas}}
+                                            {% if siswa.id_kelas.jurusan == "Rekayasa Perangkat Lunak" %}
+                                                RPL
+                                            {% elif siswa.id_kelas.jurusan == "Teknik Komputer Jaringan" %}
+                                                TKJ
+                                            {% elif siswa.id_kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
+                                                TITL
+                                            {% elif siswa.id_kelas.jurusan == "Teknik Pemesinan" %}
+                                                TP
+                                            {% elif siswa.id_kelas.jurusan == "Teknik Kendaraan Ringan" %}
+                                                TKR
+                                            {% else %}
+                                                TBSM
+                                            {% endif %}
+                                        {{ siswa.id_kelas.no_kelas }}
+                                    </td>
+                                    <td class="text-center">
+                                        {% if siswa.jns_kelamin == "Laki-laki" %}
+                                            L
+                                        {% else %}
+                                            P
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>1512618038</td>
-                                    <td>0007799122</td>
-                                    <td>Raidah Fakhirah Ramadhanie</td>
-                                    <td>XII RPL</td>
-                                    <td class="text-center">P</td>
-                                    <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
