@@ -1,0 +1,69 @@
+{% extends 'parent_center_app/base_guru.html' %}
+{% block breadcrumb %}
+    <div class="div-title mx-4 py-4">
+        <span class="title-content">{{title}}</span>
+        <hr class="dropdown-divider hr-title mt-3">
+    </div>
+{% endblock breadcrumb %}
+
+{% block content %}
+    <div class="row mt-3">
+        <div class="col-lg-12">
+            <h6 class="subtitle-dashboard">Jadwal KBM Hari Ini</h6>
+            <div class="card">
+                <div class="card-body card-dashboard div-jadwal">
+                    <div class="table-responsive table-dashboard">
+                        <table class="table table-custom-dashboard table-hover" id="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Kelas</th>
+                                    <th scope="col">Mata Pelajaran</th>
+                                    <th scope="col">Jumlah JP</th>
+                                    <th scope="col">Jam Pelajaran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        X RPL 1
+                                    </td>
+                                    <td>
+                                        Bahasa Indonesia
+                                    </td>
+                                    <td>
+                                        2 JP
+                                    </td>
+                                    <td>
+                                        07.00 - 09.30 WIB
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        X RPL 2
+                                    </td>
+                                    <td>
+                                        Bahasa Inggris
+                                    </td>
+                                    <td>2 JP</td>
+                                    <td>
+                                        10.00 - 11.30 WIB
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable({
+                pageLength : 5,
+                lengthMenu: [5, 10, 25, 100]
+            });
+        });
+    </script>
+{% endblock footer %}

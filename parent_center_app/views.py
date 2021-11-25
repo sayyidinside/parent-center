@@ -229,3 +229,9 @@ def nilaiSiswa(request):
     return render(request,
                   'parent_center_app/nilai_siswa.html',
                   {'title': 'Nilai Siswa'})
+
+@login_required(login_url='login')
+def dashboardGuru(request):
+    return render(request,
+                  'parent_center_app/dashboard_guru.html',
+                  {'title': 'Dashboard'})

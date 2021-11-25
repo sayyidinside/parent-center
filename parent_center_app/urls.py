@@ -29,4 +29,6 @@ urlpatterns = [
     path('riwayat_spp/', views.riwayatSpp, name='riwayat spp siswa'),
     path('absensi_siswa/', views.absensiSiswa, name='absensi siswa'),
     path('nilai_siswa/', views.nilaiSiswa, name='nilai siswa'),
+    # guru
+    path('dashboard_guru/', views.dashboardGuru, name='dashboard guru'),
 ]
