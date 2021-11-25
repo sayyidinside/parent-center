@@ -164,3 +164,21 @@ def dataSpp(request):
     return render(request,
                   'parent_center_app/data_spp.html',
                   {'title': 'Data SPP X RPL 1'})
+
+@login_required(login_url='login')
+def jadwalKbm(request):
+    siswas = Siswa.objects.all()
+    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
+    context ={
+        'title': 'Jadwal KBM',
+        'Siswas' : siswas,
+        'Kelass' : kelass,
+    }
+    return render(request,
+                  'parent_center_app/jadwal_kbm.html', context)
+
+@login_required(login_url='login')
+def tambahKbm(request):
+    return render(request,
+                  'parent_center_app/tambah_kbm.html',
+                  {'title': 'Tambah Jadwal KBM'})

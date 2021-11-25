@@ -21,4 +21,6 @@ urlpatterns = [
     path('cari_spp/', views.cariSpp, name='data spp'),
     path('tambah_spp/', views.bayarSpp, name='bayar spp'),
     path('data_spp/', views.dataSpp, name='data spp'),
+    path('jadwal_kbm/', views.jadwalKbm, name='jadwal kbm'),
+    path('tambah_kbm/', views.tambahKbm, name='tambah jadwal kbm'),
 ]

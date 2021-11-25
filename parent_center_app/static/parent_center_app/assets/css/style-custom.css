@@ -446,6 +446,9 @@ div.dataTables_wrapper div.dataTables_filter label {
     .form-custom .div-btn{
         margin-top: .5rem;
     }
+    #jam_selesai{
+        margin-top: .5rem;
+    }
 }
 .p125{
     padding-right: 1.25rem!important;
@@ -472,4 +475,10 @@ button[data-toggle="modal"] svg.fa-pencil-alt {
 }
 .data_spp svg{
     color: #fff!important;
+}
+.pl-8{
+    padding-left: 8px!important;
+}
+select{
+    color: #212529!important;
 }

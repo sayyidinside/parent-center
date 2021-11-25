@@ -1,0 +1,94 @@
+{% extends 'parent_center_app/base.html' %}
+{% block breadcrumb %}
+<div class="row d-flex pt-4 div-tambah">
+    <div class="col-lg-7 col-sm-6">
+        <div class="div-title">
+            <span class="title-content">{{title}}</span>
+        </div>
+    </div>
+    <div class="col-lg-5 col-sm-6 align-self-center text-right">
+        <a class="btn btn-light btn-tambah" href="/tambah_kbm"><i class="fas fa-plus-square"></i> Tambah {{title}}</a>
+    </div>
+</div>
+<hr class="dropdown-divider hr-title mb-4 mx-4 mt-3">
+{% endblock breadcrumb %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body card-dashboard">
+                <div class="row mx-0">
+                    <div class="col-lg-12 px-0 div-sort">
+                        Lihat jadwal KBM :
+                        <select class="select2select" name="kelas" id="sort-by-class">
+                            {% for kelas in Kelass %}
+                            <option value="">
+                                {{ kelas.kelas }} 
+                                {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
+                                    RPL
+                                {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
+                                    TKJ
+                                {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
+                                    TITL
+                                {% elif kelas.jurusan == "Teknik Pemesinan" %}
+                                    TP
+                                {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
+                                    TKR
+                                {% else %}
+                                    TBSM
+                                {% endif %}
+                                {{ kelas.no_kelas }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive table-mapel">
+                    <table class="table table table-striped table-siswa" id="table-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Hari</th>
+                                <th scope="col">Mata Pelajaran</th>
+                                <th scope="col">JP</th>
+                                <th scope="col">Guru</th>
+                                <th scope="col">Waktu</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Senin</td>
+                                <td>Matematika</td>
+                                <td>2</td>
+                                <td>Achmad Ali</td>
+                                <td>07.00 - 09.30 WIB</td>
+                                <td>
+                                    <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block keterangan %}
+    <b>Matematika di hari senin</b>
+{% endblock keterangan %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#sort-by-class').select2();
+        });
+    </script>
+{% endblock footer %}
