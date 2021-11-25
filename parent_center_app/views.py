@@ -8,9 +8,19 @@ from django.utils import timezone
 
 
 # Create your views here.
+def level_login(current_user):
+    match current_user:
+        case 'Admin':
+            return 'dashboard admin'
+        case 'Guru':
+            return 'dashboard guru'
+        case _:
+            return 'profil siswa'
+
+
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect('dashboard admin')
+        return redirect(level_login(request.user.extend_user.user_level))
     else:
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -18,7 +28,7 @@ def login_user(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('login')
+                return redirect(level_login(request.user.extend_user.user_level))
             else:
                 messages.error(request, 'Username or Password is incorrect')
         return render(request, 'parent_center_app/login.html', {})
@@ -47,16 +57,16 @@ def dashboardAdmin(request):
     ortu_active = User.objects.filter(last_login__gte=time_limit,
                                       extend_user__user_level='Orang Tua'
                                       ).order_by('last_login').reverse()[:5]
-    context = {
-        'title': 'Dashboard',
-        'Jml_guru': jml_guru,
-        'Jml_siswa_x': jml_siswa_x,
-        'Jml_siswa_xi': jml_siswa_xi,
-        'Jml_siswa_xii': jml_siswa_xii,
-        'Kelass': kelass,
-        'admin_active': admin_active,
-        'guru_active': guru_active,
-        'ortu_active': ortu_active}
+
+    context = {'title': 'Dashboard',
+               'Jml_guru': jml_guru,
+               'Jml_siswa_x': jml_siswa_x,
+               'Jml_siswa_xi': jml_siswa_xi,
+               'Jml_siswa_xii': jml_siswa_xii,
+               'Kelass': kelass,
+               'admin_active': admin_active,
+               'guru_active': guru_active,
+               'ortu_active': ortu_active}
     return render(request,
                   'parent_center_app/dashboard_admin.html',
                   context)
@@ -182,17 +192,18 @@ def dataSpp(request):
     return render(request,
                   'parent_center_app/data_spp.html',
                   {'title': 'Data SPP X RPL 1'})
+
+
 @login_required(login_url='login')
 def jadwalKbm(request):
     siswas = Siswa.objects.all()
-    kelass = Kelas.objects.all().order_by('kelas','jurusan','no_kelas')
-    context ={
-        'title': 'Jadwal KBM',
-        'Siswas' : siswas,
-        'Kelass' : kelass,
-    }
+    kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
+    context = {'title': 'Jadwal KBM',
+               'Siswas': siswas,
+               'Kelass': kelass}
     return render(request,
                   'parent_center_app/jadwal_kbm.html', context)
+
 
 @login_required(login_url='login')
 def tambahKbm(request):
@@ -200,11 +211,13 @@ def tambahKbm(request):
                   'parent_center_app/tambah_kbm.html',
                   {'title': 'Tambah Jadwal KBM'})
 
+
 @login_required(login_url='login')
 def biodataSiswa(request):
     return render(request,
                   'parent_center_app/biodata_siswa.html',
                   {'title': 'Biodata Siswa'})
+
 
 @login_required(login_url='login')
 def kbmSiswa(request):
@@ -212,11 +225,13 @@ def kbmSiswa(request):
                   'parent_center_app/jadwal_kbm_siswa.html',
                   {'title': 'Jadwal KBM Siswa'})
 
+
 @login_required(login_url='login')
 def riwayatSpp(request):
     return render(request,
                   'parent_center_app/riwayat_spp.html',
                   {'title': 'Riwayat Pembayaran SPP Siswa'})
+
 
 @login_required(login_url='login')
 def absensiSiswa(request):
@@ -224,11 +239,13 @@ def absensiSiswa(request):
                   'parent_center_app/absensi_siswa.html',
                   {'title': 'Absensi Siswa'})
 
+
 @login_required(login_url='login')
 def nilaiSiswa(request):
     return render(request,
                   'parent_center_app/nilai_siswa.html',
                   {'title': 'Nilai Siswa'})
+
 
 @login_required(login_url='login')
 def dashboardGuru(request):
