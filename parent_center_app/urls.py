@@ -23,4 +23,10 @@ urlpatterns = [
     path('data_spp/', views.dataSpp, name='data spp'),
     path('jadwal_kbm/', views.jadwalKbm, name='jadwal kbm'),
     path('tambah_kbm/', views.tambahKbm, name='tambah jadwal kbm'),
+    # orangtua
+    path('biodata_siswa/', views.biodataSiswa, name='profil siswa'),
+    path('jadwal_kbm_siswa/', views.kbmSiswa, name='jadwal kbm siswa'),
+    path('riwayat_spp/', views.riwayatSpp, name='riwayat spp siswa'),
+    path('absensi_siswa/', views.absensiSiswa, name='absensi siswa'),
+    path('nilai_siswa/', views.nilaiSiswa, name='nilai siswa'),
 ]

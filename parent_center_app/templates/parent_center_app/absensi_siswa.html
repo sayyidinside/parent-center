@@ -1,0 +1,96 @@
+{% extends 'parent_center_app/base_orangtua.html' %}
+{% block breadcrumb %}
+<div class="div-title mx-4 py-4">
+    <span class="title-content">{{title}}</span>
+    <hr class="dropdown-divider hr-title mt-3">
+</div>
+{% endblock breadcrumb %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body card-dashboard">
+                    <div class="row mx-0 div-sort d-flex div-absen">
+                        <div class="align-self-center judul-sort">
+                            Mata Pelajaran: &nbsp; 
+                        </div>
+                        <select class="select2select" name="id_mapel" id="id_mapel">
+                            <option value="">Matematika</option>
+                            <option value="">Seni Budaya</option>
+                            <option value="">Simulasi Digital</option>                     
+                        </select>
+                    </div>
+                    <div class="table-responsive table-siswa">
+                        <table class="table table table-striped table-siswa" id="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Pertemuan ke-</th>
+                                    <th scope="col" class="text-center">Tanggal</th>
+                                    <th scope="col" class="text-center">Kehadiran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">01 Agustus 2021</td>
+                                    <td class="text-center">Hadir</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td class="text-center">08 Agustus 2021</td>
+                                    <td class="text-center font-red">Izin</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td class="text-center">15 Agustus 2021</td>
+                                    <td class="text-center font-red">Sakit</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td class="text-center">22 Agustus 2021</td>
+                                    <td class="text-center">Hadir</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">5</td>
+                                    <td class="text-center">29 Agustus 2021</td>
+                                    <td class="text-center">Hadir</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">6</td>
+                                    <td class="text-center">05 September 2021</td>
+                                    <td class="text-center">Hadir</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">7</td>
+                                    <td class="text-center">12 September 2021</td>
+                                    <td class="text-center font-red">Alpha</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">8</td>
+                                    <td class="text-center">20 September 2021</td>
+                                    <td class="text-center">Hadir</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block keterangan %}
+    atas nama <b class="text-capitalize">Raidah Fakhirah Ramadhanie</b>
+{% endblock keterangan %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_mapel').select2();
+        });
+    </script>
+{% endblock footer %}

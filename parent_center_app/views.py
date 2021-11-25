@@ -199,3 +199,33 @@ def tambahKbm(request):
     return render(request,
                   'parent_center_app/tambah_kbm.html',
                   {'title': 'Tambah Jadwal KBM'})
+
+@login_required(login_url='login')
+def biodataSiswa(request):
+    return render(request,
+                  'parent_center_app/biodata_siswa.html',
+                  {'title': 'Biodata Siswa'})
+
+@login_required(login_url='login')
+def kbmSiswa(request):
+    return render(request,
+                  'parent_center_app/jadwal_kbm_siswa.html',
+                  {'title': 'Jadwal KBM Siswa'})
+
+@login_required(login_url='login')
+def riwayatSpp(request):
+    return render(request,
+                  'parent_center_app/riwayat_spp.html',
+                  {'title': 'Riwayat Pembayaran SPP Siswa'})
+
+@login_required(login_url='login')
+def absensiSiswa(request):
+    return render(request,
+                  'parent_center_app/absensi_siswa.html',
+                  {'title': 'Absensi Siswa'})
+
+@login_required(login_url='login')
+def nilaiSiswa(request):
+    return render(request,
+                  'parent_center_app/nilai_siswa.html',
+                  {'title': 'Nilai Siswa'})

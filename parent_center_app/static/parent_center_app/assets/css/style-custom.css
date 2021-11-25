@@ -446,7 +446,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     .form-custom .div-btn{
         margin-top: .5rem;
     }
-    #jam_selesai{
+    #jam_selesai, #tgl_lahir{
         margin-top: .5rem;
     }
 }
@@ -481,4 +481,19 @@ button[data-toggle="modal"] svg.fa-pencil-alt {
 }
 select{
     color: #212529!important;
+}
+.font-14{
+    font-size: 14px!important;
+}
+.font-red{
+    color: red;
+}
+@media screen and (max-width: 403px){
+    .div-absen{
+        display: flex;
+        justify-content: center;
+    }
+    .div-absen .judul-sort{
+        margin-bottom: .5rem;
+    }
 }

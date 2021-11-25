@@ -1,0 +1,66 @@
+{% extends 'parent_center_app/base_orangtua.html' %}
+{% block breadcrumb %}
+<div class="div-title mx-4 py-4">
+    <span class="title-content">{{title}}</span>
+    <hr class="dropdown-divider hr-title mt-3">
+</div>
+{% endblock breadcrumb %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body card-dashboard">
+                    <div class="row mx-0 div-sort d-flex div-absen">
+                        <div class="align-self-center judul-sort">
+                            Mata Pelajaran: &nbsp; 
+                        </div>
+                        <select class="select2select" name="id_mapel" id="id_mapel">
+                            <option value="">Matematika</option>
+                            <option value="">Seni Budaya</option>
+                            <option value="">Simulasi Digital</option>                     
+                        </select>
+                    </div>
+                    <div class="table-responsive table-siswa">
+                        <table class="table table table-striped table-siswa" id="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama Tugas</th>
+                                    <th scope="col" class="text-center">Nilai</th>
+                                    <th scope="col">Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Tugas 1 Eksponen</td>
+                                    <td class="text-center font-red">70</td>
+                                    <td>Remedial</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Tugas 2 Bilangan Bentuk Akar</td>
+                                    <td class="text-center">90</td>
+                                    <td>Tuntas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block footer %}
+    <script>
+        $(document).ready(function(){
+            $('#table-custom').DataTable();
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_mapel').select2();
+        });
+    </script>
+{% endblock footer %}
