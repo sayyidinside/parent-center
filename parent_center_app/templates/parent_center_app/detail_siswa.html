@@ -20,80 +20,84 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body card-custom">
-                <form method="post" name="edit_siswa" class="form-custom">
+                <form method="post" name="tambah_siswa" class="form-custom">
                     {% csrf_token %}
                     <div class="form-group row mt-3">
                         <label for="inputNis" class="col-sm-4 col-md-3 col-lg-2 col-form-label">NIS</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNis" name="nis" value="" required>
+                            {{ form.nis }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNisn" class="col-sm-4 col-md-3 col-lg-2 col-form-label">NISN</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNisn" name="nisn" value="" required>
+                            {{ form.nisn }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNama" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Nama</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputNama" name="nama" value="" required>
+                            {{ form.nama }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-md-3 col-lg-2 col-form-label" for="kelas">Kelas</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <select class="select2select form-control" name="id_kelas" id="kelas">
-                                <option value="">X RPL 1</option>
-                                <option value="">X RPL 2</option>
-                                <option value="">X RPL 3</option>
-                            </select>
+                            {{ form.id_kelas }}
                         </div>
                     </div>
                     <div class="form-group row form-jk">
                         <label class="col-sm-4 col-md-3 col-lg-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-8 col-md-9 col-lg-10 d-flex">
+                            {% for radio in form.jns_kelamin %}
                             <div class="form-check form-check-inline align-self-center">
-                                <input class="form-check-input" type="radio" name="jns_kelamin" id="perempuan" value="P" required>
-                                <label class="form-check-label" for="perempuan">Perempuan</label>
+                                {{ radio.tag }}
+                                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                    {% if radio.choice_label == 'P' %}
+                                        Perempuan
+                                    {% else %}
+                                        Laki-Laki
+                                    {% endif %}
+                                </label>
                             </div>
-                            <div class="form-check form-check-inline align-self-center">
-                                <input class="form-check-input" type="radio" name="jns_kelamin" id="laki-laki" value="L" required>
-                                <label class="form-check-label" for="laki-laki">Laki-laki</label>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="form-group row d-flex">
                         <label class="col-sm-4 col-md-3 col-lg-2 col-form-label">Tempat Tanggal Lahir</label>
                         <div class="col-sm-3 col-md-4 col-lg-5 align-self-center">
-                            <input type="text" class="form-control" id="tpt_lahir" name="tpt_lahir" value="" required>
+                            {{ form.tpt_lahir }}
                         </div>
                         <div class="col-sm-5 col-md-5 col-lg-5 align-self-center">
-                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="" required>
+                            {{ form.tgl_lahir }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputAgama" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Agama</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="text" class="form-control" id="inputAgama" name="agama" value="" required>
+                            {{ form.agama }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNoTlp" class="col-sm-4 col-md-3 col-lg-2 col-form-label">No. Telepon</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <input type="telp" class="form-control" id="inputNoTlp" name="no_tlp" value="" required>
+                            {{ form.no_tlp }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputAlamat" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Alamat</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <textarea name="alamat" class="form-control" id="inputAlamat" rows="4" required></textarea>
+                            {{ form.alamat }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12 text-right div-btn">
                             <a href="/data_siswa" class="btn btn-light">Batal</a>
-                            <input type="submit" class="btn btn-light btn-tambah" value="Simpan">
+                            {% if title == 'Tambah Siswa' %}
+                                <input type="submit" class="btn btn-light btn-tambah" value="Tambah">
+                            {% else %}
+                                <input type="submit" class="btn btn-light btn-tambah" value="Rubah">
+                            {% endif %}
                         </div>
                     </div>
                 </form>

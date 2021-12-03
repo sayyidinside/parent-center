@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Guru, Kelas, OrangTua, Siswa
 from django.contrib.auth.models import User
 from django.utils import timezone
+from .forms import SiswaForm
 
 
 # Create your views here.
@@ -121,19 +122,35 @@ def tambahSiswa(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        return render(request,
-                      'parent_center_app/tambah_siswa.html',
-                      {'title': 'Tambah Siswa'})
+        if request.method == 'POST':
+            form = SiswaForm(request.POST)
+            if form.is_valid():
+                siswa = form.save(commit=False)
+                siswa.save()
+                return redirect('data siswa')
+        else:
+            form = SiswaForm()
+            return render(request,
+                          'parent_center_app/detail_siswa.html',
+                          {'form': form, 'title': 'Tambah Siswa'})
 
 
 @login_required(login_url='login')
-def detailSiswa(request):
+def detailSiswa(request, pk):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        siswa = get_object_or_404(Siswa, pk=pk)
+        form = SiswaForm(request.POST)
+        if form.is_valid():
+            siswa = form.save(commit=False)
+            siswa.save()
+            return redirect('data siswa')
+        else:
+            form = SiswaForm(instance=siswa)
         return render(request,
                       'parent_center_app/detail_siswa.html',
-                      {'title': 'Detail Siswa'})
+                      {'form': form, 'siswa': siswa, 'title': 'Detail Siswa'})
 
 
 @login_required(login_url='login')

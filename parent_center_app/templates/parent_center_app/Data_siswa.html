@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="col-lg-5 col-sm-6 align-self-center text-right">
-        <a class="btn btn-light btn-tambah" href="/tambah_siswa"><i class="fas fa-plus-square"></i> Tambah Siswa</a>
+        <a class="btn btn-light btn-tambah" href="{% url 'tambah siswa' %}"><i class="fas fa-plus-square"></i> Tambah Siswa</a>
     </div>
 </div>
 <hr class="dropdown-divider hr-title mb-4 mx-4 mt-3">
@@ -90,8 +90,10 @@
                                         {% endif %}
                                     </td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_siswa"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                        <a class="btn btn-light" href="{% url 'detail siswa' pk=siswa.pk %}"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -104,7 +106,7 @@
     </div>
 {% endblock content %}
 {% block keterangan %}
-    atas nama <b class="text-capitalize">Raidah Fakhirah Ramadhanie</b>
+    atas nama <b class="text-capitalize">{{siswa.nama}}</b>
 {% endblock keterangan %}
 {% block footer %}
     <script>
