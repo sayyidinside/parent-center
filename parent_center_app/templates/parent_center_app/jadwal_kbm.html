@@ -57,17 +57,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for jadwal in daftar_jadwal %}
                             <tr>
-                                <td>1</td>
-                                <td>Senin</td>
-                                <td>Matematika</td>
-                                <td>2</td>
-                                <td>Achmad Ali</td>
-                                <td>07.00 - 09.30 WIB</td>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{ jadwal.hari }}</td>
+                                <td>{{ jadwal.id_mapel}}</td>
+                                <td>{{ jadwal.jumlah_jam}}</td>
+                                <td>{{ jadwal.id_guru}}</td>
+                                <td>{{ jadwal.mulai |time:"H:i" }} - {{ jadwal.selesai |time:"H:i" }} WIB</td>
                                 <td>
                                     <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

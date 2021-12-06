@@ -287,10 +287,11 @@ class Jadwal(models.Model):
                             choices=hari.choices,
                             default=hari.SENIN)
     jumlah_jam = models.IntegerField()
-    mapel_ke = models.IntegerField()
+    mulai = models.TimeField(null=True)
+    selesai = models.TimeField(null=True)
 
     def __str__(self):
         return f'''{self.id_kelas.kelas} {self.id_kelas.jurusan} {self.id_kelas.no_kelas} |
                    Hari {self.hari} |
-                   Jam Ke {self.mapel_ke} |
+                   Jam {self.mulai} - {self.selesai} WIB |
                    Guru {self.id_guru.nama}'''

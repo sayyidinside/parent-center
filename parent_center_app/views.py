@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Kelas, OrangTua, Siswa, ExtendUser
+from .models import Guru, Jadwal, Kelas, OrangTua, Siswa, ExtendUser
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm
+from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm, JadwalForm
 
 
 # Create your views here.
@@ -350,10 +350,10 @@ def jadwalKbm(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        siswas = Siswa.objects.all()
+        daftar_jadwal = Jadwal.objects.all()
         kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
         context = {'title': 'Jadwal KBM',
-                   'Siswas': siswas,
+                   'daftar_jadwal': daftar_jadwal,
                    'Kelass': kelass}
         return render(request,
                       'parent_center_app/jadwal_kbm.html', context)
@@ -364,9 +364,18 @@ def tambahKbm(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        if request.method == 'POST':
+            form = JadwalForm(request.POST)
+            if form.is_valid():
+                jadwal = form.save(commit=False)
+                jadwal.save()
+                return redirect('jadwal kbm')
+        else:
+            form = JadwalForm()
         return render(request,
                       'parent_center_app/tambah_kbm.html',
-                      {'title': 'Tambah Jadwal KBM'})
+                      {'title': 'Tambah Jadwal KBM',
+                       'form': form})
 
 
 @login_required(login_url='login')

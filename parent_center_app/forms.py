@@ -1,5 +1,5 @@
 from django import forms
-from .models import Siswa, Guru, OrangTua
+from .models import Siswa, Guru, OrangTua, Jadwal
 # , mapel, PembayaranSPP
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -151,4 +151,46 @@ class OrangTuaForm(forms.ModelForm):
                                             'required': True
                                             }),
             'jns_kelamin': forms.RadioSelect(attrs={'class': 'form-check-input'})
+        }
+
+
+class JadwalForm(forms.ModelForm):
+
+    class Meta:
+        model = Jadwal
+        fields = ['id_kelas', 'id_mapel', 'id_guru', 'hari', 'jumlah_jam', 'mulai', 'selesai']
+        widgets = {
+            'id_kelas': forms.Select(attrs={'class': 'select2select form-control',
+                                            'id': 'id_kelas',
+                                            'name': 'id_kelas'}),
+            'id_mapel': forms.Select(attrs={'class': 'select2select',
+                                            'name': 'id_mapel',
+                                            'id': 'id_mapel'}),
+            'id_guru': forms.Select(attrs={'class': 'select2select',
+                                           'name': 'id_guru',
+                                           'id': 'id_guru'
+                                           }),
+            'hari': forms.Select(attrs={'class': 'form-control pl-8',
+                                        'name': 'hari',
+                                        'id': 'hari'
+                                        }),
+            'jumlah_jam': forms.NumberInput(attrs={'class': 'form-control',
+                                                   'id': 'jp',
+                                                   'name': 'jp',
+                                                   'min': '1',
+                                                   'value': '1',
+                                                   'required': True
+                                                   }),
+            'mulai': forms.TimeInput(attrs={'class': 'form-control',
+                                            'type': 'time',
+                                            'id': 'jam_mulai',
+                                            'nama': 'jam_mulai',
+                                            'required': True
+                                            }),
+            'selesai': forms.TimeInput(attrs={'class': 'form-control',
+                                              'type': 'time',
+                                              'id': 'jam_selesai',
+                                              'nama': 'jam_selesai',
+                                              'required': True
+                                              })
         }
