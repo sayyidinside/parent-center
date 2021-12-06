@@ -141,11 +141,12 @@ def detailSiswa(request, pk):
         return redirect(level_login(request))
     else:
         siswa = get_object_or_404(Siswa, pk=pk)
-        form = SiswaForm(request.POST)
-        if form.is_valid():
-            siswa = form.save(commit=False)
-            siswa.save()
-            return redirect('data siswa')
+        if request.method == 'POST':
+            form = SiswaForm(request.POST, instance=siswa)
+            if form.is_valid():
+                siswa = form.save(commit=False)
+                siswa.save()
+                return redirect('data siswa')
         else:
             form = SiswaForm(instance=siswa)
     return render(request,
