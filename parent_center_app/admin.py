@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Jadwal, mapel, Kelas, Extend_User, Admin, Guru
+from .models import Jadwal, Mapel, Kelas, ExtendUser, Admin, Guru
 from .models import Siswa, OrangTua, Tugas, NilaiTugas, Absen, DaftarAbsen, PembayaranSPP
 
 
@@ -44,13 +44,13 @@ class JadwalAdmin(admin.ModelAdmin):
     readonly_fields = ['id_jadwal', ]
 
 
-admin.site.register(mapel, MapelAdmin)
+admin.site.register(Mapel, MapelAdmin)
 admin.site.register(Admin, ConAdmin)
 admin.site.register(Kelas, KelasAdmin)
 admin.site.register(Guru, GuruAdmin)
 admin.site.register(Siswa, SiswaAdmin)
 admin.site.register(OrangTua)
-admin.site.register(Extend_User, UserAdmin)
+admin.site.register(ExtendUser, UserAdmin)
 admin.site.register(Tugas, TugasAdmin)
 admin.site.register(Absen, AbsenAdmin)
 admin.site.register(PembayaranSPP, SppAdmin)

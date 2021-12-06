@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Kelas, OrangTua, Siswa, Extend_User
+from .models import Guru, Kelas, OrangTua, Siswa, ExtendUser
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import SiswaForm, RegisterForm, GuruForm
@@ -18,7 +18,7 @@ def level_login(current_user):
     Returns:
         sritng: dashboard url to redirect
     """
-    match current_user.user.extend_user.user_level:
+    match current_user.user.extenduser.user_level:
         case 'Admin':
             return 'dashboard admin'
         case 'Guru':
@@ -37,7 +37,7 @@ def level_permission(current_user, level: list) -> bool:
     Returns:
         boolean: True or False to if statment
     """
-    if current_user.user.extend_user.user_level in level:
+    if current_user.user.extenduser.user_level in level:
         return True
     else:
         return False
@@ -77,13 +77,13 @@ def dashboardAdmin(request):
 
         time_limit = timezone.now() - timezone.timedelta(hours=3)
         admin_active = User.objects.filter(last_login__gte=time_limit,
-                                           extend_user__user_level='Admin'
+                                           extenduser__user_level='Admin'
                                            ).order_by('last_login').reverse()[:5]
         guru_active = User.objects.filter(last_login__gte=time_limit,
-                                          extend_user__user_level='Guru'
+                                          extenduser__user_level='Guru'
                                           ).order_by('last_login').reverse()[:5]
         ortu_active = User.objects.filter(last_login__gte=time_limit,
-                                          extend_user__user_level='Orang Tua'
+                                          extenduser__user_level='Orang Tua'
                                           ).order_by('last_login').reverse()[:5]
 
         context = {'title': 'Dashboard',
@@ -184,9 +184,9 @@ def tambahGuru(request):
                 user_form.email = guru_form.cleaned_data.get('email')
                 user_form.save()
                 guru_form = guru_form.save(commit=False)
-                Extend_User.objects.update_or_create(user=user_form,
-                                                     user_level='Guru')
-                guru_form.id_user = Extend_User.objects.get(user=user_form)
+                ExtendUser.objects.update_or_create(user=user_form,
+                                                    user_level='Guru')
+                guru_form.id_user = ExtendUser.objects.get(user=user_form)
                 guru_form.save()
                 return redirect('data guru')
             else:

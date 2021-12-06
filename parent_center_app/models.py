@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class mapel(models.Model):
+class Mapel(models.Model):
     id_mapel = models.CharField(max_length=10,
                                 primary_key=True,
                                 unique=True,
@@ -63,7 +63,7 @@ class Kelas(models.Model):
         return f'{self.kelas} {self.jurusan} {self.no_kelas}'
 
 
-class Extend_User(models.Model):
+class ExtendUser(models.Model):
     user = models.OneToOneField(User,
                                 null=True,
                                 on_delete=models.CASCADE)
@@ -95,7 +95,7 @@ class Admin(models.Model):
     email = models.EmailField(default="example@gmail.com")
     no_tlp = models.CharField(max_length=12)
     alamat = models.TextField(null=True)
-    id_user = models.OneToOneField(Extend_User, null=True, on_delete=models.SET_NULL)
+    id_user = models.OneToOneField(ExtendUser, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.id_user.user.username} | {self.nama}'
@@ -119,7 +119,7 @@ class Guru(models.Model):
     jns_kelamin = models.CharField(max_length=10,
                                    choices=jns_kelamin.choices,
                                    default=jns_kelamin.L)
-    id_user = models.OneToOneField(Extend_User, null=True, on_delete=models.SET_NULL)
+    id_user = models.OneToOneField(ExtendUser, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.no_induk} - {self.nama}'
@@ -158,7 +158,14 @@ class OrangTua(models.Model):
     keterangan = models.CharField(max_length=50)
     no_tlp = models.CharField(max_length=13)
     alamat = models.TextField(null=True)
-    id_user = models.OneToOneField(Extend_User, null=True, on_delete=models.SET_NULL)
+    id_user = models.OneToOneField(ExtendUser, null=True, on_delete=models.SET_NULL)
+
+    class jns_kelamin(models.TextChoices):
+        P = 'Perempuan'
+        L = 'Laki-Laki'
+    jns_kelamin = models.CharField(max_length=10,
+                                   choices=jns_kelamin.choices,
+                                   default=jns_kelamin.L)
 
     def __str__(self):
         return f'{self.nama} | Orangtua dari {self.id_ortu.nama} - {self.id_ortu.nis}'
@@ -170,7 +177,7 @@ class Tugas(models.Model):
                                 unique=True,
                                 default=custom_tugas,
                                 editable=False)
-    id_mapel = models.ForeignKey(mapel, on_delete=CASCADE)
+    id_mapel = models.ForeignKey(Mapel, on_delete=CASCADE)
     id_kelas = models.ForeignKey(Kelas, on_delete=CASCADE)
     id_guru = models.ForeignKey(Guru, null=True, on_delete=models.SET_NULL)
     nama = models.CharField(max_length=100)
@@ -203,7 +210,7 @@ class Absen(models.Model):
                                 unique=True,
                                 default=custom_absen,
                                 editable=False)
-    id_mapel = models.ForeignKey(mapel, on_delete=CASCADE)
+    id_mapel = models.ForeignKey(Mapel, on_delete=CASCADE)
     id_kelas = models.ForeignKey(Kelas, on_delete=CASCADE)
     id_guru = models.ForeignKey(Guru, null=True, on_delete=models.SET_NULL)
     tgl = models.DateField(default=date.today)
@@ -267,7 +274,7 @@ class Jadwal(models.Model):
                                  default=custom_jadwal,
                                  editable=False)
     id_kelas = models.ForeignKey(Kelas, on_delete=CASCADE)
-    id_mapel = models.ForeignKey(mapel, on_delete=CASCADE)
+    id_mapel = models.ForeignKey(Mapel, on_delete=CASCADE)
     id_guru = models.ForeignKey(Guru, null=True, on_delete=models.SET_NULL)
 
     class hari(models.TextChoices):
