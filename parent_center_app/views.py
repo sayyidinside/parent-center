@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Guru, Kelas, OrangTua, Siswa, ExtendUser
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import SiswaForm, RegisterForm, GuruForm
+from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm
 
 
 # Create your views here.
@@ -241,19 +241,48 @@ def tambahOrangtua(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        if request.method == 'POST':
+            user_form = RegisterForm(request.POST)
+            ortu_form = OrangTuaForm(request.POST)
+            if user_form.is_valid() and ortu_form.is_valid():
+                user_form = user_form.save(commit=False)
+                user_form.save()
+                ortu_form = ortu_form.save(commit=False)
+                ExtendUser.objects.update_or_create(user=user_form,
+                                                    user_level='Orang Tua')
+                ortu_form.id_user = ExtendUser.objects.get(user=user_form)
+                ortu_form.save()
+                return redirect('data orang tua')
+            else:
+                messages.error(request, user_form.errors)
+        else:
+            user_form = RegisterForm()
+            ortu_form = OrangTuaForm()
         return render(request,
                       'parent_center_app/tambah_orangtua.html',
-                      {'title': 'Tambah Orang Tua / Wali'})
+                      {'title': 'Tambah Orang Tua / Wali',
+                       'user_form': user_form,
+                       'ortu_form': ortu_form})
 
 
 @login_required(login_url='login')
-def detailOrangtua(request):
+def detailOrangtua(request, pk):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        ortu = get_object_or_404(OrangTua, pk=pk)
+        if request.method == 'POST':
+            form = OrangTuaForm(request.POST, instance=ortu)
+            if form.is_valid():
+                ortu = form.save(commit=False)
+                ortu.save()
+                return redirect('data orang tua')
+        else:
+            form = OrangTuaForm(instance=ortu)
         return render(request,
                       'parent_center_app/detail_orangtua.html',
-                      {'title': 'Detail Orang Tua / Wali'})
+                      {'title': 'Detail Orang Tua / Wali',
+                       'form': form})
 
 
 @login_required(login_url='login')

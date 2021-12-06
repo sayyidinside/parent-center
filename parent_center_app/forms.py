@@ -1,6 +1,6 @@
 from django import forms
-from .models import Siswa, Guru
-# , OrangTua, mapel, PembayaranSPP
+from .models import Siswa, Guru, OrangTua
+# , mapel, PembayaranSPP
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -116,4 +116,39 @@ class RegisterForm(UserCreationForm):
                                                'id': 'inputUsername',
                                                'name': 'username',
                                                'required': True}),
+        }
+
+
+class OrangTuaForm(forms.ModelForm):
+
+    class Meta:
+        model = OrangTua
+        fields = ['nama', 'id_ortu', 'keterangan', 'no_tlp', 'alamat', 'jns_kelamin']
+        widgets = {
+            'nama': forms.TextInput(attrs={'class': 'form-control',
+                                           'id': 'inputNama',
+                                           'name': 'nama',
+                                           'required': True,
+                                           'autofocus': True
+                                           }),
+            'id_ortu': forms.Select(attrs={'class': 'select2select form-control',
+                                           'id': 'id_siswa',
+                                           'name': 'siswa'}),
+            'keterangan': forms.Textarea(attrs={'class': 'form-control',
+                                                'id': 'inputKeterangan',
+                                                'rows': '2',
+                                                'name': 'keterangan'
+                                                }),
+            'no_tlp': forms.TextInput(attrs={'class': 'form-control',
+                                             'id': 'inputNoTlp',
+                                             'name': 'no_tlp',
+                                             'required': True
+                                             }),
+            'alamat': forms.Textarea(attrs={'class': 'form-control',
+                                            'name': 'alamat',
+                                            'id': 'inputAlamat',
+                                            'rows': '4',
+                                            'required': True
+                                            }),
+            'jns_kelamin': forms.RadioSelect(attrs={'class': 'form-check-input'})
         }

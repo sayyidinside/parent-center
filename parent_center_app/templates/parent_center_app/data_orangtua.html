@@ -40,7 +40,7 @@
                                     <td>{{forloop.counter}}</td>
                                     <td>{{orangTua.nama}}</td>
                                     <td>
-                                        <a href="/detail_siswa">
+                                        <a href="{% url 'detail siswa' pk=orangTua.id_ortu.pk %}">
                                             {{orangTua.id_ortu.nama}}
                                             (
                                                 {{orangTua.id_ortu.id_kelas.kelas}}
@@ -64,7 +64,7 @@
                                     <td>{{orangTua.no_tlp}}</td>
                                     <td>{{orangTua.alamat}}</td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_orangtua"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <a class="btn btn-light" href="{% url 'detail orangtua' pk=orangTua.pk %}"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
