@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Kelas, OrangTua, Siswa
+from .models import Guru, Kelas, OrangTua, Siswa, Extend_User
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import SiswaForm
+from .forms import SiswaForm, RegisterForm, GuruForm
 
 
 # Create your views here.
@@ -130,9 +130,9 @@ def tambahSiswa(request):
                 return redirect('data siswa')
         else:
             form = SiswaForm()
-            return render(request,
-                          'parent_center_app/detail_siswa.html',
-                          {'form': form, 'title': 'Tambah Siswa'})
+        return render(request,
+                      'parent_center_app/detail_siswa.html',
+                      {'form': form, 'title': 'Tambah Siswa'})
 
 
 @login_required(login_url='login')
@@ -148,9 +148,11 @@ def detailSiswa(request, pk):
             return redirect('data siswa')
         else:
             form = SiswaForm(instance=siswa)
-        return render(request,
-                      'parent_center_app/detail_siswa.html',
-                      {'form': form, 'siswa': siswa, 'title': 'Detail Siswa'})
+    return render(request,
+                  'parent_center_app/detail_siswa.html',
+                  {'form': form,
+                   'siswa': siswa,
+                   'title': 'Detail Siswa'})
 
 
 @login_required(login_url='login')
@@ -173,19 +175,49 @@ def tambahGuru(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        return render(request,
-                      'parent_center_app/tambah_guru.html',
-                      {'title': 'Tambah Guru'})
+        if request.method == 'POST':
+            user_form = RegisterForm(request.POST)
+            guru_form = GuruForm(request.POST)
+            if user_form.is_valid() and guru_form.is_valid():
+                user_form = user_form.save(commit=False)
+                user_form.email = guru_form.cleaned_data.get('email')
+                user_form.save()
+                guru_form = guru_form.save(commit=False)
+                Extend_User.objects.update_or_create(user=user_form,
+                                                     user_level='Guru')
+                guru_form.id_user = Extend_User.objects.get(user=user_form)
+                guru_form.save()
+                return redirect('data guru')
+            else:
+                messages.error(request, user_form.errors)
+        else:
+            user_form = RegisterForm()
+            guru_form = GuruForm()
+    return render(request,
+                  'parent_center_app/tambah_guru.html',
+                  {'user_form': user_form,
+                   'guru_form': guru_form,
+                   'title': 'Tambah Guru'})
 
 
 @login_required(login_url='login')
-def detailGuru(request):
+def detailGuru(request, pk):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        guru = get_object_or_404(Guru, pk=pk)
+        if request.method == 'POST':
+            form = GuruForm(request.POST, instance=guru)
+            if form.is_valid():
+                guru = form.save(commit=False)
+                guru.save()
+                return redirect('data guru')
+        else:
+            form = GuruForm(instance=guru)
         return render(request,
                       'parent_center_app/detail_guru.html',
-                      {'title': 'Detail Guru'})
+                      {'title': 'Detail Guru',
+                       'form': form})
 
 
 @login_required(login_url='login')

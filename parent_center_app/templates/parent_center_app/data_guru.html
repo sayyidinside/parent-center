@@ -43,7 +43,7 @@
                                     <td>{{guru.no_tlp}}</td>
                                     <td>{{guru.email}}</td>
                                     <td>
-                                        <a class="btn btn-light" href="/detail_guru"><i class="fas fa-external-link-square-alt"></i></a>
+                                        <a class="btn btn-light" href="{% url 'detail guru' pk=guru.pk %}"><i class="fas fa-external-link-square-alt"></i></a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>

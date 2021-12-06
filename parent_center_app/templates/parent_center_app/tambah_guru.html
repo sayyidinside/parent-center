@@ -26,44 +26,48 @@
                     <div class="form-group row">
                         <label for="inputNip" class="col-sm-3 col-md-2 col-form-label">NIP/NIKKI</label>
                         <div class="col-sm-9 col-md-10">
-                            <input type="text" class="form-control" id="inputNip" name="no_induk" required>
+                            {{ guru_form.no_induk }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
                         <div class="col-sm-9 col-md-10">
-                            <input type="text" class="form-control" id="inputNama" name="nama" required>
+                            {{ guru_form.nama }}
                         </div>
                     </div>
                     <div class="form-group row form-jk">
                         <label class="col-sm-3 col-md-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-9 col-md-10 d-flex">
+                            {% for radio in guru_form.jns_kelamin %}
                             <div class="form-check form-check-inline align-self-center">
-                                <input class="form-check-input" type="radio" name="jns_kelamin" id="perempuan" value="P" required>
-                                <label class="form-check-label" for="perempuan">Perempuan</label>
+                                {{ radio.tag }}
+                                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                    {% if radio.choice_label == 'P' %}
+                                        Perempuan
+                                    {% else %}
+                                        Laki-Laki
+                                    {% endif %}
+                                </label>
                             </div>
-                            <div class="form-check form-check-inline align-self-center">
-                                <input class="form-check-input" type="radio" name="jns_kelamin" id="laki-laki" value="L" required>
-                                <label class="form-check-label" for="laki-laki">Laki-laki</label>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputEmail" class="col-sm-3 col-md-2 col-form-label">Email</label>
                         <div class="col-sm-9 col-md-10">
-                            <input type="email" class="form-control" id="inputEmail" name="email" required>
+                            {{ guru_form.email }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputNoTlp" class="col-sm-3 col-md-2 col-form-label">No. Telepon</label>
                         <div class="col-sm-9 col-md-10">
-                            <input type="telp" class="form-control" id="inputNoTlp" name="no_tlp" required>
+                            {{ guru_form.no_tlp }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputAlamat" class="col-sm-3 col-md-2 col-form-label">Alamat</label>
                         <div class="col-sm-9 col-md-10">
-                            <textarea name="alamat" class="form-control" id="inputAlamat" rows="4" required></textarea>
+                            {{ guru_form.alamat }}
                         </div>
                     </div>
                     
@@ -71,14 +75,27 @@
                     <div class="form-group row">
                         <label for="inputUsername" class="col-sm-3 col-md-2 col-form-label">Username</label>
                         <div class="col-sm-9 col-md-10">
-                            <input type="text" class="form-control" id="inputUsername" name="username" required>
+                            {{ user_form.username }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword" class="col-sm-3 col-md-2 col-form-label">Password</label>
                         <div class="col-sm-9 col-md-10">
                             <div class="input-group">
-                                <input type="password" class="form-control" id="inputPassword" name="password" required>
+                                {{ user_form.password1 }}
+                                <div class="input-group-append">
+                                  <button type="button" class="input-group-text" id="btnShowPassword">
+                                      <i class="fas fa-eye" id="spanEye"></i>
+                                  </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword2" class="col-sm-3 col-md-2 col-form-label">Ulangi Password</label>
+                        <div class="col-sm-9 col-md-10">
+                            <div class="input-group">
+                                {{ user_form.password2 }}
                                 <div class="input-group-append">
                                   <button type="button" class="input-group-text" id="btnShowPassword">
                                       <i class="fas fa-eye" id="spanEye"></i>
