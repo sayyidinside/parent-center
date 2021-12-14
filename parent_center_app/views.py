@@ -2,10 +2,11 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Jadwal, Kelas, OrangTua, Siswa, ExtendUser
+from .models import Guru, Jadwal, Kelas, Mapel, OrangTua, Siswa, ExtendUser
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm, JadwalForm
+from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm
+from .forms import JadwalForm, MapelForm
 
 
 # Create your views here.
@@ -286,13 +287,43 @@ def detailOrangtua(request, pk):
 
 
 @login_required(login_url='login')
-def dataMapel(request):
+def dataMapel(request, pk=None):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        mapel_detail = Mapel.objects.filter(pk=pk).first()
+        mapel = Mapel.objects.filter().order_by('nama')
+        if mapel_detail is None:
+            if request.method == 'POST':
+                form = MapelForm(request.POST)
+                if form.is_valid():
+                    form.save()
+            else:
+                form = MapelForm()
+        else:
+            form = MapelForm(request.POST, instance=mapel_detail)
         return render(request,
                       'parent_center_app/data_mapel.html',
-                      {'title': 'Mata Pelajaran'})
+                      {'title': 'Mata Pelajaran',
+                       'mapel': mapel,
+                       'form': form})
+
+
+def edit_mapel(request, pk=None):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        print('sedang edit')
+        form = get_object_or_404(Mapel, pk=pk)
+        # if request.method == 'POST':
+        #     form = MapelForm(request.POST, instance=pelajaran)
+        #     if form.is_valid():
+        #         form.save()
+        #         return redirect('data orang tua')
+        # else:
+        #     form = MapelForm(instance=pelajaran)
+        context = {'form': form}
+    return render(request, 'parent_center_app/data_mapel.html', context)
 
 
 @login_required(login_url='login')

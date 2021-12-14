@@ -1,6 +1,6 @@
 from django import forms
-from .models import Siswa, Guru, OrangTua, Jadwal
-# , mapel, PembayaranSPP
+from .models import Siswa, Guru, OrangTua, Jadwal, Mapel
+# , PembayaranSPP
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -193,4 +193,25 @@ class JadwalForm(forms.ModelForm):
                                               'nama': 'jam_selesai',
                                               'required': True
                                               })
+        }
+
+
+class MapelForm(forms.ModelForm):
+
+    class Meta:
+        model = Mapel
+        fields = ['nama', 'jenis']
+        widgets = {
+            'nama': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'inputNama',
+                'name': 'nama',
+                'required': True
+            }),
+            'jenis': forms.Select(attrs={
+                'name': 'jenis',
+                'id': 'jenis',
+                'class': 'form-control',
+                'required': True
+            })
         }

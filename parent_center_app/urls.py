@@ -15,6 +15,7 @@ urlpatterns = [
     path('tambah_orangtua/', views.tambahOrangtua, name='tambah orangtua'),
     path('detail_orangtua/<int:pk>', views.detailOrangtua, name='detail orangtua'),
     path('data_mapel/', views.dataMapel, name='data mapel'),
+    path('data_mapel/edits/<str:pk>', views.edit_mapel, name='edit mapel'),
     path('data_kelas/', views.dataKelas, name='data kelas'),
     path('profile_admin/', views.profileAdmin, name='profile admin'),
     path('logout/', views.logout_user, name='logout'),

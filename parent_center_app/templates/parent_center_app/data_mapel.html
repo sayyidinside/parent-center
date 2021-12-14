@@ -33,33 +33,31 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for pelajaran in mapel %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Matematika</td>
-                                    <td>A. Muatan Nasional</td>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ pelajaran.nama }}</td>
                                     <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_mapel"><i class="fas fa-pencil-alt"></i></button>
+                                        {% if pelajaran.jenis == 'A' %}
+                                        A. Muatan Nasional
+                                        {% elif pelajaran.jenis == 'B' %}
+                                        B. Muatan Kewilayahan
+                                        {% elif pelajaran.jenis == 'C1' %}
+                                        C1. Muatan Peminatan Kejuruan
+                                        {% elif pelajaran.jenis == 'C2' %}
+                                        C2. Dasar Program Keahlian
+                                        {% else %}
+                                        C3. Kompetensi Keahlian
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="#"><button class="btn btn-light" class="open-modal" type="button" data-target="#modal_edit_mapel" data-url="{% url 'edit mapel' pk=pelajaran.pk }"">
+                                            <i class="fas fa-pencil-alt"></i></button>
+                                        </a>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Seni Budaya</td>
-                                    <td>B. Muatan Kewilayahan</td>
-                                    <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_mapel"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Simulasi Digital</td>
-                                    <td>C1. Dasar Bidang Keahlian</td>
-                                    <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_mapel"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -79,24 +77,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" name="tambah_mapel" class="form-custom">
+                    <form method="post" name="tambah_mapel" class="form-custom" action="{% url 'data mapel' %}">
                         {% csrf_token %}
                         <div class="form-group row">
                             <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
                             <div class="col-sm-9 col-md-10">
-                                <input type="text" class="form-control" id="inputNama" name="nama" required>
+                                {{ form.nama }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="jenis" class="col-sm-3 col-md-2 col-form-label">Jenis</label>
                             <div class="col-sm-9 col-md-10">
-                                <select name="jenis" id="jenis" class="form-control">
-                                    <option value="A">A. Muatan Nasional</option>
-                                    <option value="B">B. Muatan Kewilayahan</option>
-                                    <option value="C1">C1. Dasar Bidang Keahlian</option>
-                                    <option value="C2">C2. Dasar Program Keahlian</option>
-                                    <option value="C3">C3. Kompetensi Keahlian</option>
-                                </select>
+                                {{ form.jenis }}
                             </div>
                         </div>
                         <div class="modal-footer border-0 p125">
@@ -109,54 +101,63 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modal_edit_mapel" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header border-0 d-flex">
-                    <i class="fas fa-pencil-alt align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Ubah Mata Pelajaran</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" name="ubah_mapel" class="form-custom">
-                        {% csrf_token %}
-                        <div class="form-group row">
-                            <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
-                            <div class="col-sm-9 col-md-10">
-                                <input type="text" class="form-control" id="inputNama" name="nama" value="" required>
+    <div id='modal-div'>
+        <div class="modal fade" id="modal_edit_mapel" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-0 d-flex">
+                        <i class="fas fa-pencil-alt align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Ubah Mata Pelajaran</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" name="ubah_mapel" class="form-custom">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
+                                <div class="col-sm-9 col-md-10">
+                                    {{ form.nama }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="jenis" class="col-sm-3 col-md-2 col-form-label">Jenis</label>
-                            <div class="col-sm-9 col-md-10">
-                                <select name="jenis" id="jenis" class="form-control">
-                                    <option value="A">A. Muatan Nasional</option>
-                                    <option value="B">B. Muatan Kewilayahan</option>
-                                    <option value="C1">C1. Dasar Bidang Keahlian</option>
-                                    <option value="C2">C2. Dasar Program Keahlian</option>
-                                    <option value="C3">C3. Kompetensi Keahlian</option>
-                                </select>
+                            <div class="form-group row">
+                                <label for="jenis" class="col-sm-3 col-md-2 col-form-label">Jenis</label>
+                                <div class="col-sm-9 col-md-10">
+                                    {{ form.jenis }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer border-0 p125">
-                            <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-light btn-tambah">Simpan</button>
-                        </div>
-                    </form>
+                            <div class="modal-footer border-0 p125">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-light btn-tambah">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     
 {% endblock content %}
 {% block keterangan %}
-    <b>Matematika</b>
+    <b>{{ detail.nama }}</b>
 {% endblock keterangan %}
 {% block footer %}
     <script>
         $(document).ready(function(){
             $('#table-custom').DataTable();
+        });
+
+        var modalDiv = $("#modal_edit_mapel");
+
+        $(".open-modal").on("click", function() {
+          $.ajax({
+            url: $(this).attr("data-url"),
+            success: function(data) {
+              modalDiv.html(data);
+              $("#modal_edit_mapel").modal();
+            }
+          });
         });
     </script>
 {% endblock footer %}

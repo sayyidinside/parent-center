@@ -1,0 +1,33 @@
+<div class="modal fade" id="modal_edit_mapel" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header border-0 d-flex">
+                <i class="fas fa-pencil-alt align-self-center"></i> <h5 class="modal-title" id="ModalLabel">Ubah Mata Pelajaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" name="ubah_mapel" class="form-custom" action="{% url 'edit mapel' %}">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="inputNama" class="col-sm-3 col-md-2 col-form-label">Nama</label>
+                        <div class="col-sm-9 col-md-10">
+                            {{ form.nama }}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="jenis" class="col-sm-3 col-md-2 col-form-label">Jenis</label>
+                        <div class="col-sm-9 col-md-10">
+                            {{ form.jenis }}
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 p125">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-light btn-tambah">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
