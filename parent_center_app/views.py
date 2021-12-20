@@ -10,7 +10,7 @@ from .forms import JadwalForm, MapelForm, KelasForm
 
 
 # Create your views here.
-def level_login(current_user):
+def level_login(current_user) -> str:
     """funtion to render correct dashboard according to user level
 
     Args:
@@ -87,15 +87,17 @@ def dashboardAdmin(request):
                                           extenduser__user_level='Orang Tua'
                                           ).order_by('last_login').reverse()[:5]
 
-        context = {'title': 'Dashboard',
-                   'Jml_guru': jml_guru,
-                   'Jml_siswa_x': jml_siswa_x,
-                   'Jml_siswa_xi': jml_siswa_xi,
-                   'Jml_siswa_xii': jml_siswa_xii,
-                   'Kelass': kelass,
-                   'admin_active': admin_active,
-                   'guru_active': guru_active,
-                   'ortu_active': ortu_active}
+        context = {
+            'title': 'Dashboard',
+            'Jml_guru': jml_guru,
+            'Jml_siswa_x': jml_siswa_x,
+            'Jml_siswa_xi': jml_siswa_xi,
+            'Jml_siswa_xii': jml_siswa_xii,
+            'Kelass': kelass,
+            'admin_active': admin_active,
+            'guru_active': guru_active,
+            'ortu_active': ortu_active
+        }
         return render(request,
                       'parent_center_app/dashboard_admin.html',
                       context)
@@ -131,9 +133,14 @@ def tambahSiswa(request):
                 return redirect('data siswa')
         else:
             form = SiswaForm()
+
+        context = {
+            'form': form,
+            'title': 'Tambah Siswa'
+        }
         return render(request,
                       'parent_center_app/detail_siswa.html',
-                      {'form': form, 'title': 'Tambah Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -150,11 +157,15 @@ def detailSiswa(request, pk):
                 return redirect('data siswa')
         else:
             form = SiswaForm(instance=siswa)
-    return render(request,
-                  'parent_center_app/detail_siswa.html',
-                  {'form': form,
-                   'siswa': siswa,
-                   'title': 'Detail Siswa'})
+
+        context = {
+            'form': form,
+            'siswa': siswa,
+            'title': 'Detail Siswa'
+        }
+        return render(request,
+                      'parent_center_app/detail_siswa.html',
+                      context)
 
 
 @login_required(login_url='login')
@@ -195,11 +206,15 @@ def tambahGuru(request):
         else:
             user_form = RegisterForm()
             guru_form = GuruForm()
-    return render(request,
-                  'parent_center_app/tambah_guru.html',
-                  {'user_form': user_form,
-                   'guru_form': guru_form,
-                   'title': 'Tambah Guru'})
+
+        context = {
+            'user_form': user_form,
+            'guru_form': guru_form,
+            'title': 'Tambah Guru'
+        }
+        return render(request,
+                      'parent_center_app/tambah_guru.html',
+                      context)
 
 
 @login_required(login_url='login')
@@ -216,10 +231,14 @@ def detailGuru(request, pk):
                 return redirect('data guru')
         else:
             form = GuruForm(instance=guru)
+
+        context = {
+            'title': 'Detail Guru',
+            'form': form
+        }
         return render(request,
                       'parent_center_app/detail_guru.html',
-                      {'title': 'Detail Guru',
-                       'form': form})
+                      context)
 
 
 @login_required(login_url='login')
@@ -259,11 +278,15 @@ def tambahOrangtua(request):
         else:
             user_form = RegisterForm()
             ortu_form = OrangTuaForm()
+
+        context = {
+            'title': 'Tambah Orang Tua / Wali',
+            'user_form': user_form,
+            'ortu_form': ortu_form
+        }
         return render(request,
                       'parent_center_app/tambah_orangtua.html',
-                      {'title': 'Tambah Orang Tua / Wali',
-                       'user_form': user_form,
-                       'ortu_form': ortu_form})
+                      context)
 
 
 @login_required(login_url='login')
@@ -280,10 +303,14 @@ def detailOrangtua(request, pk):
                 return redirect('data orang tua')
         else:
             form = OrangTuaForm(instance=ortu)
+
+        context = {
+            'title': 'Detail Orang Tua / Wali',
+            'form': form
+        }
         return render(request,
                       'parent_center_app/detail_orangtua.html',
-                      {'title': 'Detail Orang Tua / Wali',
-                       'form': form})
+                      context)
 
 
 @login_required(login_url='login')
@@ -302,11 +329,15 @@ def dataMapel(request, pk=None):
                 form = MapelForm()
         else:
             form = MapelForm(request.POST, instance=mapel_detail)
+
+        context = {
+            'title': 'Mata Pelajaran',
+            'mapel': mapel,
+            'form': form
+        }
         return render(request,
                       'parent_center_app/data_mapel.html',
-                      {'title': 'Mata Pelajaran',
-                       'mapel': mapel,
-                       'form': form})
+                      context)
 
 
 def edit_mapel(request, pk=None):
@@ -323,7 +354,9 @@ def edit_mapel(request, pk=None):
         # else:
         #     form = MapelForm(instance=pelajaran)
         context = {'form': form}
-    return render(request, 'parent_center_app/data_mapel.html', context)
+    return render(request,
+                  'parent_center_app/data_mapel.html',
+                  context)
 
 
 @login_required(login_url='login')
@@ -342,6 +375,7 @@ def dataKelas(request, pk=None):
                 form = KelasForm()
         else:
             form = KelasForm(request.POST, instance=kelas_detail)
+
         context = {'title': 'Kelas',
                    'daftar_kelas': kelas,
                    'form': form
@@ -356,9 +390,10 @@ def profileAdmin(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Profile'}
         return render(request,
                       'parent_center_app/profile_admin.html',
-                      {'title': 'Profile'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -366,9 +401,10 @@ def cariSpp(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Data SPP'}
         return render(request,
                       'parent_center_app/cari_spp.html',
-                      {'title': 'Data SPP'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -383,10 +419,11 @@ def bayarSpp(request):
                 return redirect('data spp')
         else:
             form = SppForm()
-            context = {
-                'title': 'Bayar SPP',
-                'form': form
-            }
+
+        context = {
+            'title': 'Bayar SPP',
+            'form': form
+        }
         return render(request,
                       'parent_center_app/tambah_spp.html',
                       context)
@@ -397,7 +434,8 @@ def dataSpp(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        form = PembayaranSPP.objects.all().order_by('tgl_bayar')
+        form = PembayaranSPP.objects.all().order_by('tgl_bayar').reverse()
+
         context = {
             'title': 'Data SPP',
             'form': form
@@ -412,8 +450,9 @@ def jadwalKbm(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        daftar_jadwal = Jadwal.objects.all()
+        daftar_jadwal = Jadwal.objects.all().order_by('hari').reverse()
         kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
+
         context = {'title': 'Jadwal KBM',
                    'daftar_jadwal': daftar_jadwal,
                    'Kelass': kelass}
@@ -434,10 +473,14 @@ def tambahKbm(request):
                 return redirect('jadwal kbm')
         else:
             form = JadwalForm()
+
+        context = {
+            'title': 'Tambah Jadwal KBM',
+            'form': form
+        }
         return render(request,
                       'parent_center_app/tambah_kbm.html',
-                      {'title': 'Tambah Jadwal KBM',
-                       'form': form})
+                      context)
 
 
 @login_required(login_url='login')
@@ -445,9 +488,10 @@ def biodataSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Biodata Siswa'}
         return render(request,
                       'parent_center_app/biodata_siswa.html',
-                      {'title': 'Biodata Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -455,9 +499,10 @@ def kbmSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Jadwal KBM Siswa'}
         return render(request,
                       'parent_center_app/jadwal_kbm_siswa.html',
-                      {'title': 'Jadwal KBM Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -465,9 +510,10 @@ def riwayatSpp(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Riwayat Pembayaran SPP Siswa'}
         return render(request,
                       'parent_center_app/riwayat_spp.html',
-                      {'title': 'Riwayat Pembayaran SPP Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -475,9 +521,10 @@ def absensiSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Absensi Siswa'}
         return render(request,
                       'parent_center_app/absensi_siswa.html',
-                      {'title': 'Absensi Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -485,9 +532,10 @@ def nilaiSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Nilai Siswa'}
         return render(request,
                       'parent_center_app/nilai_siswa.html',
-                      {'title': 'Nilai Siswa'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -495,6 +543,7 @@ def dashboardGuru(request):
     if level_permission(request, ['Admin', 'Guru']) is False:
         return redirect(level_login(request))
     else:
+        context = {'title': 'Dashboard'}
         return render(request,
                       'parent_center_app/dashboard_guru.html',
-                      {'title': 'Dashboard'})
+                      context)

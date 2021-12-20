@@ -95,19 +95,7 @@
                                 <tr>
                                     <td>
                                         {{ kelas.kelas }} 
-                                            {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
-                                                RPL
-                                            {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
-                                                TKJ
-                                            {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
-                                                TITL
-                                            {% elif kelas.jurusan == "Teknik Pemesinan" %}
-                                                TP
-                                            {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
-                                                TKR
-                                            {% else %}
-                                                TBSM
-                                            {% endif %}
+                                        {{ kelas.get_jurusan_display }}
                                         {{ kelas.no_kelas }}
                                     </td>
                                     <td>
