@@ -32,22 +32,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for kelas in daftar_kelas %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>X RPL 1</td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ kelas.kelas}} {{ kelas.get_jurusan_display }} {{ kelas.no_kelas }}</td>
                                     <td>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_kelas"><i class="fas fa-pencil-alt"></i></button>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>X RPL 2</td>
-                                    <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_kelas"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -72,30 +66,19 @@
                         <div class="form-group row">
                             <label for="kelas" class="col-md-3 col-form-label">Kelas</label>
                             <div class="col-md-9">
-                                <select name="kelas" id="kelas" class="form-control">
-                                    <option value="X">X</option>
-                                    <option value="XI">XI</option>
-                                    <option value="XII">XII</option>
-                                </select>
+                                {{ form.kelas }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="jurusan" class="col-md-3 col-form-label">Jurusan</label>
                             <div class="col-md-9">
-                                <select name="jurusan" id="jurusan" class="form-control">
-                                    <option value="TITL">Teknik Instalasi Tenaga Listrik</option>
-                                    <option value="TP">Teknik Pemesinan</option>
-                                    <option value="TKR">Teknik Kendaraan Ringan</option>
-                                    <option value="TKJ">Teknik Komputer Jaringan</option>
-                                    <option value="RPL">Rekayasa Perangkat Lunak</option>
-                                    <option value="TBSM">Teknik dan Bisnis Sepeda Motor</option>
-                                </select>
+                                {{ form.jurusan }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="no_kelas" class="col-md-3 col-form-label">Nomor Kelas</label>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" id="no_kelas" name="no_kelas" min="1" required>
+                                {{ form.no_kelas }}
                             </div>
                         </div>
                         <div class="modal-footer border-0 p125">

@@ -48,20 +48,21 @@ class Kelas(models.Model):
                              default=rentang_kelas.X)
 
     class jurusan(models.TextChoices):
-        TITL = 'Teknik Intalasi Tenaga Listrik'
-        TP = 'Teknik Pemesinan'
-        TKR = 'Teknik Kendaraan Ringan'
-        TKJ = 'Teknik Komputer Jaringan'
-        RPL = 'Rekayasa Perangkat Lunak'
-        TBSM = 'Teknik dan Bisnis Sepeda Motor'
+        TITL = 'TITL', 'Teknik Intalasi Tenaga Listrik'
+        TP = 'TP', 'Teknik Pemesinan'
+        TKR = 'TKR', 'Teknik Kendaraan Ringan'
+        TKJ = 'TKJ', 'Teknik Komputer Jaringan'
+        RPL = 'RPL', 'Rekayasa Perangkat Lunak'
+        TBSM = 'TBSM', 'Teknik dan Bisnis Sepeda Motor'
 
     jurusan = models.CharField(max_length=30,
                                choices=jurusan.choices,
                                default=jurusan.TITL)
-    no_kelas = models.SmallIntegerField(default=1)
+    no_kelas = models.SmallIntegerField(default=1,
+                                        validators=[MinValueValidator(1)])
 
     def __str__(self):
-        return f'{self.kelas} {self.jurusan} {self.no_kelas}'
+        return f'{self.kelas} { self.get_jurusan_display() } {self.no_kelas}'
 
 
 class ExtendUser(models.Model):
@@ -267,7 +268,7 @@ class PembayaranSPP(models.Model):
 
     semester = models.CharField(max_length=10,
                                 choices=Semesteran.choices,
-                                default= Semesteran.ganjil)
+                                default=Semesteran.ganjil)
 
     def __str__(self):
         return f'''{self.id_siswa.nama} |

@@ -6,7 +6,7 @@ from .models import Guru, Jadwal, Kelas, Mapel, OrangTua, Siswa, ExtendUser, Pem
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm, SppForm
-from .forms import JadwalForm, MapelForm
+from .forms import JadwalForm, MapelForm, KelasForm
 
 
 # Create your views here.
@@ -327,13 +327,28 @@ def edit_mapel(request, pk=None):
 
 
 @login_required(login_url='login')
-def dataKelas(request):
+def dataKelas(request, pk=None):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        kelas_detail = Kelas.objects.filter(pk=pk).first()
+        kelas = Kelas.objects.all().order_by('kelas')
+        if kelas_detail is None:
+            if request.method == 'POST':
+                form = KelasForm(request.POST)
+                if form.is_valid():
+                    form.save()
+            else:
+                form = KelasForm()
+        else:
+            form = KelasForm(request.POST, instance=kelas_detail)
+        context = {'title': 'Kelas',
+                   'daftar_kelas': kelas,
+                   'form': form
+                   }
         return render(request,
                       'parent_center_app/data_kelas.html',
-                      {'title': 'Kelas'})
+                      context)
 
 
 @login_required(login_url='login')

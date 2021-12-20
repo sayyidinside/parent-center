@@ -1,5 +1,5 @@
 from django import forms
-from .models import Siswa, Guru, OrangTua, Jadwal, Mapel, PembayaranSPP
+from .models import Siswa, Guru, OrangTua, Jadwal, Mapel, PembayaranSPP, Kelas
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -249,6 +249,34 @@ class SppForm(forms.ModelForm):
             }),
             'semester': forms.RadioSelect(attrs={
                 'class': 'form-check-input',
+                'required': True
+            })
+        }
+
+
+class KelasForm(forms.ModelForm):
+
+    class Meta:
+        model = Kelas
+        fields = ['kelas', 'jurusan', 'no_kelas']
+        widgets = {
+            'kelas': forms.Select(attrs={
+                'class': 'form-control',
+                'name': 'kelas',
+                'id': 'kelas',
+                'required': True
+            }),
+            'jurusan': forms.Select(attrs={
+                'class': 'form-control',
+                'name': 'jurusan',
+                'id': 'jurusan',
+                'required': True
+            }),
+            'no_kelas': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'name': 'no_kelas',
+                'id': 'no_kelas',
+                'min': '1',
                 'required': True
             })
         }
