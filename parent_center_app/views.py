@@ -74,7 +74,19 @@ def dashboardAdmin(request):
         jml_siswa_xi = Siswa.objects.filter(id_kelas__kelas='XI').count()
         jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
         jml_guru = Guru.objects.count()
-        kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
+
+        match timezone.now().isoweekday():
+            case 1:
+                hari_ini = 'Senin'
+            case 2:
+                hari_ini = 'Selasa'
+            case 3:
+                hari_ini = 'Rabu'
+            case 4:
+                hari_ini = 'Kamis'
+            case _:
+                hari_ini = 'Jumat'
+        jadwal = Jadwal.objects.all().order_by('id_kelas', 'mulai').filter(hari=hari_ini)
 
         time_limit = timezone.now() - timezone.timedelta(hours=3)
         admin_active = User.objects.filter(last_login__gte=time_limit,
@@ -88,12 +100,14 @@ def dashboardAdmin(request):
                                           ).order_by('last_login').reverse()[:5]
 
         context = {
+            'tanggal': timezone.now(),
+            'hari': hari_ini,
             'title': 'Dashboard',
             'Jml_guru': jml_guru,
             'Jml_siswa_x': jml_siswa_x,
             'Jml_siswa_xi': jml_siswa_xi,
             'Jml_siswa_xii': jml_siswa_xii,
-            'Kelass': kelass,
+            'jadwal': jadwal,
             'admin_active': admin_active,
             'guru_active': guru_active,
             'ortu_active': ortu_active
