@@ -27,34 +27,29 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Tanggal Bayar</th>
+                                    <th scope="col">Tahun Ajar</th>
+                                    <th scope="col">Semester</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for spp in form %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Nabilah</td>
-                                    <td>23 November 2021</td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ spp.id_siswa.nama }}</td>
+                                    <td>{{ spp.tgl_bayar|date:'l, d F Y'  }}</td>
+                                    <td>{{ spp.thn_ajar }}</td>
+                                    <td>{% if spp.semester == '1' %}
+                                            Ganjil
+                                        {% else %}
+                                            Genap
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Nabilah</td>
-                                    <td>23 November 2021</td>
-                                    <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Nabilah</td>
-                                    <td>23 November 2021</td>
-                                    <td>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

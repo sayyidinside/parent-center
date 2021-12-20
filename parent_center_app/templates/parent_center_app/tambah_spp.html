@@ -25,39 +25,32 @@
                     <div class="form-group row mt-3 d-flex">
                         <label for="tahun_ajar" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Tahun Ajaran</label>
                         <div class="col-sm-8 col-md-9 col-lg-10 align-self-center">
-                            <input type="text" class="form-control" id="tahun_ajar" name="thn_ajar" required>
+                            {{ form.thn_ajar }}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="id_kelas" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Kelas</label>
-                        <div class="col-sm-8 col-md-9 col-lg-10">
-                            <select class="select2select" name="id_kelas" id="id_kelas">
-                                <option value="">X RPL 1</option>
-                                <option value="">X RPL 2</option>
-                                <option value="">X RPL 3</option>
-                                <option value="">XI RPL 1</option>
-                                <option value="">XI RPL 2</option>
-                                <option value="">XI RPL 3</option>                            
-                            </select>
+                    <div class="form-group row form-jk">
+                        <label class="col-sm-4 col-md-3 col-lg-2 col-form-label">Semester</label>
+                        <div class="col-sm-8 col-md-9 col-lg-10 d-flex">
+                            {% for radio in form.semester %}
+                            <div class="form-check form-check-inline align-self-center">
+                                {{ radio.tag }}
+                                <label class="form-check-label" for="{{ radio.id_for_label }}">
+                                    {{ radio.choice_label }}
+                                </label>
+                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="id_siswa" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Nama Siswa</label>
                         <div class="col-sm-8 col-md-9 col-lg-10">
-                            <select class="select2select" name="id_siswa" id="id_siswa">
-                                <option value="">Nabilah</option>
-                                <option value="">Asadin</option>
-                                <option value="">Shiro</option>
-                                <option value="">Mimi</option>
-                                <option value="">Momo</option>
-                                <option value="">Udin</option>                            
-                            </select>
+                            {{ form.id_siswa }}
                         </div>
                     </div>
                     <div class="form-group row d-flex">
                         <label for="tgl_bayar" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Tanggal Bayar</label>
                         <div class="col-sm-8 col-md-9 col-lg-10 align-self-center">
-                            <input type="date" class="form-control" id="tgl_bayar" name="tgl_bayar" required>
+                            {{ form.tgl_bayar }}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -86,7 +79,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Rp.</span>
                                 </div>
-                                <input type="text" class="form-control" name="jumlah" id="jumlah">
+                                {{ form.jumlah }}
                                 <div class="input-group-append">
                                     <span class="input-group-text">,00</span>
                                 </div>

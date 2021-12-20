@@ -2,10 +2,10 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Jadwal, Kelas, Mapel, OrangTua, Siswa, ExtendUser
+from .models import Guru, Jadwal, Kelas, Mapel, OrangTua, Siswa, ExtendUser, PembayaranSPP
 from django.contrib.auth.models import User
 from django.utils import timezone
-from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm
+from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm, SppForm
 from .forms import JadwalForm, MapelForm
 
 
@@ -361,9 +361,20 @@ def bayarSpp(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        if request.method == 'POST':
+            form = SppForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('data spp')
+        else:
+            form = SppForm()
+            context = {
+                'title': 'Bayar SPP',
+                'form': form
+            }
         return render(request,
                       'parent_center_app/tambah_spp.html',
-                      {'title': 'Bayar SPP'})
+                      context)
 
 
 @login_required(login_url='login')
@@ -371,9 +382,14 @@ def dataSpp(request):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
+        form = PembayaranSPP.objects.all().order_by('tgl_bayar')
+        context = {
+            'title': 'Data SPP',
+            'form': form
+        }
         return render(request,
                       'parent_center_app/data_spp.html',
-                      {'title': 'Data SPP X RPL 1'})
+                      context)
 
 
 @login_required(login_url='login')

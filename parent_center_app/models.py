@@ -4,6 +4,7 @@ from django.db.models.deletion import CASCADE
 from .utils import custom_jadwal, custom_user, custom_absen, custom_adm, custom_guru
 from .utils import custom_kelas, custom_mapel, custom_siswa, custom_spp, custom_tugas
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 # Create your models here.
@@ -255,10 +256,18 @@ class PembayaranSPP(models.Model):
                                      editable=False)
     id_siswa = models.ForeignKey(Siswa, on_delete=CASCADE)
     tgl_bayar = models.DateField(default=date.today)
-    bulan_ke = models.SmallIntegerField()
-    jumlah = models.IntegerField()
-    thn_ajar = models.IntegerField()
-    semester = models.IntegerField()
+    bulan_ke = models.PositiveSmallIntegerField(validators=[MaxValueValidator(12),
+                                                            MinValueValidator(1)])
+    jumlah = models.PositiveBigIntegerField()
+    thn_ajar = models.CharField(max_length=5)
+
+    class Semesteran(models.TextChoices):
+        ganjil = '1', 'Ganjil',
+        genap = '2', 'Genap'
+
+    semester = models.CharField(max_length=10,
+                                choices=Semesteran.choices,
+                                default= Semesteran.ganjil)
 
     def __str__(self):
         return f'''{self.id_siswa.nama} |

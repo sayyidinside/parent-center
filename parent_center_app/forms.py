@@ -1,6 +1,5 @@
 from django import forms
-from .models import Siswa, Guru, OrangTua, Jadwal, Mapel
-# , PembayaranSPP
+from .models import Siswa, Guru, OrangTua, Jadwal, Mapel, PembayaranSPP
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -212,6 +211,44 @@ class MapelForm(forms.ModelForm):
                 'name': 'jenis',
                 'id': 'jenis',
                 'class': 'form-control',
+                'required': True
+            })
+        }
+
+
+class SppForm(forms.ModelForm):
+
+    class Meta:
+        model = PembayaranSPP
+        fields = ['id_siswa', 'tgl_bayar', 'bulan_ke', 'jumlah', 'thn_ajar', 'semester']
+        widgets = {
+            'id_siswa': forms.Select(attrs={
+                'class': 'select2select',
+                'name': 'id_siswa',
+                'id': 'id_siswa',
+                'required': True
+            }),
+            'tgl_bayar': forms.DateInput(attrs={
+                'type': 'date',
+                'class': 'form-control',
+                'id': 'tgl_bayar',
+                'name': 'tgl_bayar',
+                'required': True
+            }),
+            'jumlah': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'name': 'jumlah',
+                'id': 'jumlah',
+                'required': True
+            }),
+            'thn_ajar': forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'tahun_ajar',
+                'name': 'thn_ajar',
+                'required': True
+            }),
+            'semester': forms.RadioSelect(attrs={
+                'class': 'form-check-input',
                 'required': True
             })
         }
