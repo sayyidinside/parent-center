@@ -512,7 +512,15 @@ def biodataSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
-        context = {'title': 'Biodata Siswa'}
+        ortu = request.user.extenduser.orangtua.id_ortu.pk
+        siswa = get_object_or_404(Siswa, pk=ortu)
+        print(siswa)
+        form = SiswaForm(instance=siswa)
+        context = {
+            'form': form,
+            'siswa': siswa,
+            'title': 'Biodata'
+        }
         return render(request,
                       'parent_center_app/biodata_siswa.html',
                       context)
@@ -529,7 +537,8 @@ def kbmSiswa(request):
         jadwal = Jadwal.objects.all().order_by('hari').filter(id_kelas=kelas).reverse()
         context = {
             'title': 'Jadwal KBM Siswa',
-            'jadwal': jadwal
+            'jadwal': jadwal,
+            'siswa': siswa
         }
         return render(request,
                       'parent_center_app/jadwal_kbm_siswa.html',
