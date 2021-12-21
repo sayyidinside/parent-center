@@ -378,7 +378,6 @@ def edit_mapel(request, pk=None):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        print('sedang edit')
         form = get_object_or_404(Mapel, pk=pk)
         # if request.method == 'POST':
         #     form = MapelForm(request.POST, instance=pelajaran)
@@ -487,7 +486,6 @@ def jadwalKbm(request, kelas='kls-22112021001556824333'):
         daftar_jadwal = Jadwal.objects.all().filter(id_kelas=kelas).order_by('hari').reverse()
         kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
         selected = kelas
-        print(timezone.localtime())
         context = {
             'title': 'Jadwal KBM',
             'daftar_jadwal': daftar_jadwal,
@@ -530,7 +528,6 @@ def biodataSiswa(request):
     else:
         ortu = request.user.extenduser.orangtua.id_ortu.pk
         siswa = get_object_or_404(Siswa, pk=ortu)
-        print(siswa)
         form = SiswaForm(instance=siswa)
         context = {
             'form': form,
