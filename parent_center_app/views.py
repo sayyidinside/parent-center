@@ -44,6 +44,25 @@ def level_permission(current_user, level: list) -> bool:
         return False
 
 
+def get_day() -> str:
+    """funtion to get current day in bahasa
+
+    Returns:
+        str: name of the day
+    """
+    match timezone.now().isoweekday():
+        case 1:
+            return 'Senin'
+        case 2:
+            return 'Selasa'
+        case 3:
+            return 'Rabu'
+        case 4:
+            return 'Kamis'
+        case _:
+            return 'Jumat'
+
+
 def login_user(request):
     if request.user.is_authenticated:
         return redirect(level_login(request))
@@ -75,17 +94,7 @@ def dashboardAdmin(request):
         jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
         jml_guru = Guru.objects.count()
 
-        match timezone.now().isoweekday():
-            case 1:
-                hari_ini = 'Senin'
-            case 2:
-                hari_ini = 'Selasa'
-            case 3:
-                hari_ini = 'Rabu'
-            case 4:
-                hari_ini = 'Kamis'
-            case _:
-                hari_ini = 'Jumat'
+        hari_ini = get_day()
         jadwal = Jadwal.objects.all().order_by('id_kelas', 'mulai').filter(hari=hari_ini)
 
         time_limit = timezone.now() - timezone.timedelta(hours=3)
@@ -513,7 +522,14 @@ def kbmSiswa(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
-        context = {'title': 'Jadwal KBM Siswa'}
+        ortu = request.user.extenduser.orangtua.id_ortu.pk
+        siswa = get_object_or_404(Siswa, pk=ortu)
+        kelas = siswa.id_kelas
+        jadwal = Jadwal.objects.all().order_by('hari').filter(id_kelas=kelas).reverse()
+        context = {
+            'title': 'Jadwal KBM Siswa',
+            'jadwal': jadwal
+        }
         return render(request,
                       'parent_center_app/jadwal_kbm_siswa.html',
                       context)

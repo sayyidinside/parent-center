@@ -98,14 +98,14 @@
                                         {{ kegiatan.grouper }}
                                     </td>
                                     <td>
-                                        <ol>
+                                        <ol style="padding: 0px;">
                                             {% for content in kegiatan.list %}
                                             <li>{{ content.id_mapel }}</li>
                                             {% endfor %}
                                         </ol>
                                     </td>
                                     <td>
-                                        <ol>
+                                        <ol style="padding: 0px;">
                                             {% for content in kegiatan.list %}
                                             <li>{{ content.id_guru.nama }}</li>
                                             {% endfor %}
@@ -113,7 +113,7 @@
                                         </ol>
                                     </td>
                                     <td>
-                                        <ol>
+                                        <ol style="padding: 0px;">
                                             {% for content in kegiatan.list %}
                                             <li>{{ content.mulai|time:"H:i" }} - {{ content.selesai|time:"H:i" }}</li>
                                             {% endfor %}
@@ -135,7 +135,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for admin in admin_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ admin.extend_user.admin.nama }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ admin.extenduser.admin.nama }}</li>
                         {% endfor %}
                         </ul>
                         <br>
@@ -145,7 +145,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for guru in guru_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ guru.extend_user.guru.nama }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ guru.extenduser.guru.nama }}</li>
                         {% endfor %}
                         </ul>
                         <br>
@@ -155,7 +155,7 @@
                     <div class="scroll-div h165">
                         <ul class="list-group list-group-flush list-user">
                         {% for ortu in ortu_active %}
-                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ ortu.extend_user.orangtua.nama }}</li>
+                            <li class="list-group-item"><i class="fas fa-circle"></i> {{ ortu.extenduser.orangtua.nama }}</li>
                         {% endfor %}
                         </ul>
                     </div>
