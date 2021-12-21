@@ -28,7 +28,7 @@ urlpatterns = [
     path('biodata_siswa/', views.biodataSiswa, name='profil siswa'),
     path('jadwal_kbm_siswa/', views.kbmSiswa, name='jadwal kbm siswa'),
     path('riwayat_spp/', views.riwayatSpp, name='riwayat spp siswa'),
-    path('absensi_siswa/', views.absensiSiswa, name='absensi siswa'),
+    path('absensi_siswa/<str:mapel>', views.absensiSiswa, name='absensi siswa'),
     path('nilai_siswa/', views.nilaiSiswa, name='nilai siswa'),
     # guru
     path('dashboard_guru/', views.dashboardGuru, name='dashboard guru'),

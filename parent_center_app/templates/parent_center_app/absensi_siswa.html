@@ -14,10 +14,15 @@
                         <div class="align-self-center judul-sort">
                             Mata Pelajaran: &nbsp; 
                         </div>
-                        <select class="select2select" name="id_mapel" id="id_mapel">
-                            <option value="">Matematika</option>
-                            <option value="">Seni Budaya</option>
-                            <option value="">Simulasi Digital</option>                     
+                        <select class="select2select" name="id_mapel" id="id_mapel" onchange="location = this.value;">
+                            {% for mapel in pelajaran %}
+                                {% if mapel.id_mapel == selected %}
+                                <option value="{% url 'absensi siswa' mapel=mapel.id_mapel %}" selected>{{ mapel.nama }}</option>
+                                {% else %}
+                                <option value="{% url 'absensi siswa' mapel=mapel.id_mapel %}">{{ mapel.nama }}</option>
+                                {% endif %}
+                            
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="table-responsive table-siswa">
@@ -30,46 +35,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for data in absen %}
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">01 Agustus 2021</td>
-                                    <td class="text-center">Hadir</td>
+                                    <td class="text-center">{{ data.id_absen.pertemuan }}</td>
+                                    <td class="text-center">{{ data.id_absen.tgl|date:'l, d F Y' }}</td>
+                                    <td class="text-center">
+                                        {% if data.keterangan == 'H' %}
+                                            <span>{{ data.keterangan }}</span>
+                                        {% else %}
+                                            <span style="color: red;">{{ data.keterangan }}</span>
+                                        {% endif %}
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center">08 Agustus 2021</td>
-                                    <td class="text-center font-red">Izin</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3</td>
-                                    <td class="text-center">15 Agustus 2021</td>
-                                    <td class="text-center font-red">Sakit</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4</td>
-                                    <td class="text-center">22 Agustus 2021</td>
-                                    <td class="text-center">Hadir</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">5</td>
-                                    <td class="text-center">29 Agustus 2021</td>
-                                    <td class="text-center">Hadir</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">6</td>
-                                    <td class="text-center">05 September 2021</td>
-                                    <td class="text-center">Hadir</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">7</td>
-                                    <td class="text-center">12 September 2021</td>
-                                    <td class="text-center font-red">Alpha</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">8</td>
-                                    <td class="text-center">20 September 2021</td>
-                                    <td class="text-center">Hadir</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

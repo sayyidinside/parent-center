@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Guru, Jadwal, Kelas, Mapel, OrangTua, Siswa, ExtendUser, PembayaranSPP
+from .models import DaftarAbsen, Guru, Jadwal, Kelas, Mapel
+from .models import OrangTua, Siswa, ExtendUser, PembayaranSPP
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .forms import SiswaForm, RegisterForm, GuruForm, OrangTuaForm, SppForm
@@ -553,11 +554,21 @@ def riwayatSpp(request):
 
 
 @login_required(login_url='login')
-def absensiSiswa(request):
+def absensiSiswa(request, mapel='pel-23112021085749532504'):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
-        context = {'title': 'Absensi Siswa'}
+        pelajaran = Mapel.objects.all().order_by('nama')
+        siswa = request.user.extenduser.orangtua.id_ortu.pk
+        absen = DaftarAbsen.objects.all().filter(id_siswa=siswa,
+                                                 id_absen__id_mapel=mapel).reverse()
+        selected = mapel
+        context = {
+            'title': 'Absensi Siswa',
+            'pelajaran': pelajaran,
+            'absen': absen,
+            'selected': selected
+        }
         return render(request,
                       'parent_center_app/absensi_siswa.html',
                       context)

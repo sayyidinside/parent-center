@@ -291,10 +291,10 @@ class DaftarAbsen(models.Model):
     id_siswa = models.ForeignKey(Siswa, on_delete=CASCADE)
 
     class keterangan(models.TextChoices):
-        H = 'Hadir'
-        A = 'Alfa'
-        I = 'Izin'
-        S = 'Sakit'
+        H = 'H', 'Hadir'
+        A = 'A', 'Alfa'
+        I = 'I', 'Izin'
+        S = 'S', 'Sakit'
 
     keterangan = models.CharField(
         max_length=10,

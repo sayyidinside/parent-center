@@ -25,19 +25,7 @@
                                 {% for kelas in Kelass %}
                                 <option value="">
                                     {{ kelas.kelas }} 
-                                    {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
-                                        RPL
-                                    {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
-                                        TKJ
-                                    {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
-                                        TITL
-                                    {% elif kelas.jurusan == "Teknik Pemesinan" %}
-                                        TP
-                                    {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
-                                        TKR
-                                    {% else %}
-                                        TBSM
-                                    {% endif %}
+                                    {{ kelas.jurusan }}
                                     {{ kelas.no_kelas }}
                                 </option>
                                 {% endfor %}
@@ -67,19 +55,7 @@
                                     <td>{{siswa.nama}}</td>
                                     <td>
                                         {{siswa.id_kelas.kelas}}
-                                            {% if siswa.id_kelas.jurusan == "Rekayasa Perangkat Lunak" %}
-                                                RPL
-                                            {% elif siswa.id_kelas.jurusan == "Teknik Komputer Jaringan" %}
-                                                TKJ
-                                            {% elif siswa.id_kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
-                                                TITL
-                                            {% elif siswa.id_kelas.jurusan == "Teknik Pemesinan" %}
-                                                TP
-                                            {% elif siswa.id_kelas.jurusan == "Teknik Kendaraan Ringan" %}
-                                                TKR
-                                            {% else %}
-                                                TBSM
-                                            {% endif %}
+                                        {{ siswa.id_kelas.get_jurusan_display }}
                                         {{ siswa.id_kelas.no_kelas }}
                                     </td>
                                     <td class="text-center">
