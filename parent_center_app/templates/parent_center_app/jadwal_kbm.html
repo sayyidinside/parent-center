@@ -19,26 +19,18 @@
             <div class="card-body card-dashboard">
                 <div class="row mx-0">
                     <div class="col-lg-12 px-0 div-sort">
-                        Lihat jadwal KBM :
-                        <select class="select2select" name="kelas" id="sort-by-class">
-                            {% for kelas in Kelass %}
-                            <option value="">
-                                {{ kelas.kelas }} 
-                                {% if kelas.jurusan == "Rekayasa Perangkat Lunak" %}
-                                    RPL
-                                {% elif kelas.jurusan == "Teknik Komputer Jaringan" %}
-                                    TKJ
-                                {% elif kelas.jurusan == "Teknik Intalasi Tenaga Listrik" %}
-                                    TITL
-                                {% elif kelas.jurusan == "Teknik Pemesinan" %}
-                                    TP
-                                {% elif kelas.jurusan == "Teknik Kendaraan Ringan" %}
-                                    TKR
+                        Lihat jadwal KBM : 
+                        <select class="select2select" name="kelas" id="sort-by-class" onchange="location = this.value;">
+                            {% for kls in Kelass %}
+                                {% if kls.id_kelas == selected %}
+                                    <option value="{% url 'jadwal kbm' kelas=kls.id_kelas %}" selected>
+                                        {{ kls.kelas }} {{ kls.jurusan }} {{ kls.no_kelas }}
+                                    </option>
                                 {% else %}
-                                    TBSM
+                                    <option value="{% url 'jadwal kbm' kelas=kls.id_kelas %}">
+                                        {{ kls.kelas }} {{ kls.jurusan }} {{ kls.no_kelas }}
+                                    </option>
                                 {% endif %}
-                                {{ kelas.no_kelas }}
-                            </option>
                             {% endfor %}
                         </select>
                     </div>

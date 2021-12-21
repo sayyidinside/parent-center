@@ -69,10 +69,10 @@
                                     Lihat Jadwal
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btn-jadwal">
-                                    <button class="dropdown-item" id="kemarin">Kemarin</button>
-                                    <button class="dropdown-item" id="hari ini">Hari ini</button>
-                                    <button class="dropdown-item" id="besok">Besok</button>
-                                    <button class="dropdown-item" id="lusa">Lusa</button>
+                                    <a class="dropdown-item" id="kemarin" href="{% url 'dashboard admin' 'kemarin' %}">Kemarin</a>
+                                    <a class="dropdown-item" id="hari ini" href="{% url 'dashboard admin' 'hari ini' %}">Hari Ini</a>
+                                    <a class="dropdown-item" id="besok" href="{% url 'dashboard admin' 'besok' %}">Besok</a>
+                                    <a class="dropdown-item" id="lusa" href="{% url 'dashboard admin' 'lusa '%}">Lusa</a>
                                 </div>
                             </div>
                         </div>

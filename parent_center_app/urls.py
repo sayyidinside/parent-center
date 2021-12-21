@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.login_user, name='login'),
-    path('dashboard_admin/', views.dashboardAdmin, name='dashboard admin'),
+    path('dashboard_admin/<str:condition>', views.dashboardAdmin, name='dashboard admin'),
     path('data_siswa/', views.dataSiswa, name='data siswa'),
     path('tambah_siswa/', views.tambahSiswa, name='tambah siswa'),
     path('detail_siswa/<str:pk>', views.detailSiswa, name='detail siswa'),
@@ -22,7 +22,7 @@ urlpatterns = [
     path('cari_spp/', views.cariSpp, name='data spp'),
     path('tambah_spp/', views.bayarSpp, name='bayar spp'),
     path('data_spp/', views.dataSpp, name='data spp'),
-    path('jadwal_kbm/', views.jadwalKbm, name='jadwal kbm'),
+    path('jadwal_kbm/<str:kelas>', views.jadwalKbm, name='jadwal kbm'),
     path('tambah_kbm/', views.tambahKbm, name='tambah jadwal kbm'),
     # orangtua
     path('biodata_siswa/', views.biodataSiswa, name='profil siswa'),

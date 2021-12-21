@@ -22,7 +22,7 @@ def level_login(current_user) -> str:
     """
     match current_user.user.extenduser.user_level:
         case 'Admin':
-            return 'dashboard admin'
+            return '/dashboard_admin/hari%20ini'
         case 'Guru':
             return 'dashboard guru'
         case _:
@@ -45,13 +45,13 @@ def level_permission(current_user, level: list) -> bool:
         return False
 
 
-def get_day() -> str:
+def get_day(plus: int = 0) -> str:
     """funtion to get current day in bahasa
 
     Returns:
         str: name of the day
     """
-    match timezone.now().isoweekday():
+    match timezone.localtime().isoweekday() + plus:
         case 1:
             return 'Senin'
         case 2:
@@ -86,7 +86,7 @@ def logout_user(request):
 
 
 @login_required(login_url='login')
-def dashboardAdmin(request):
+def dashboardAdmin(request, condition='hari ini'):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
@@ -95,10 +95,20 @@ def dashboardAdmin(request):
         jml_siswa_xii = Siswa.objects.filter(id_kelas__kelas='XII').count()
         jml_guru = Guru.objects.count()
 
-        hari_ini = get_day()
+        match condition:
+            case 'kemarin':
+                num = -1
+            case 'hari ini':
+                num = 0
+            case 'besok':
+                num = 1
+            case _:
+                num = 2
+
+        hari_ini = get_day(num)
         jadwal = Jadwal.objects.all().order_by('id_kelas', 'mulai').filter(hari=hari_ini)
 
-        time_limit = timezone.now() - timezone.timedelta(hours=3)
+        time_limit = timezone.localtime() - timezone.timedelta(hours=3)
         admin_active = User.objects.filter(last_login__gte=time_limit,
                                            extenduser__user_level='Admin'
                                            ).order_by('last_login').reverse()[:5]
@@ -110,7 +120,7 @@ def dashboardAdmin(request):
                                           ).order_by('last_login').reverse()[:5]
 
         context = {
-            'tanggal': timezone.now(),
+            'tanggal': timezone.localtime(),
             'hari': hari_ini,
             'title': 'Dashboard',
             'Jml_guru': jml_guru,
@@ -470,18 +480,23 @@ def dataSpp(request):
 
 
 @login_required(login_url='login')
-def jadwalKbm(request):
+def jadwalKbm(request, kelas='kls-22112021001556824333'):
     if level_permission(request, ['Admin']) is False:
         return redirect(level_login(request))
     else:
-        daftar_jadwal = Jadwal.objects.all().order_by('hari').reverse()
+        daftar_jadwal = Jadwal.objects.all().filter(id_kelas=kelas).order_by('hari').reverse()
         kelass = Kelas.objects.all().order_by('kelas', 'jurusan', 'no_kelas')
-
-        context = {'title': 'Jadwal KBM',
-                   'daftar_jadwal': daftar_jadwal,
-                   'Kelass': kelass}
+        selected = kelas
+        print(timezone.localtime())
+        context = {
+            'title': 'Jadwal KBM',
+            'daftar_jadwal': daftar_jadwal,
+            'Kelass': kelass,
+            'selected': selected
+        }
         return render(request,
-                      'parent_center_app/jadwal_kbm.html', context)
+                      'parent_center_app/jadwal_kbm.html',
+                      context)
 
 
 @login_required(login_url='login')
@@ -494,7 +509,8 @@ def tambahKbm(request):
             if form.is_valid():
                 jadwal = form.save(commit=False)
                 jadwal.save()
-                return redirect('jadwal kbm')
+                kls = request.POST.get('id_kelas')
+                return redirect('jadwal kbm', kelas=kls)
         else:
             form = JadwalForm()
 
