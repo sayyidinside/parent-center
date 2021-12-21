@@ -14,6 +14,7 @@
                     <table class="table table table-striped table-siswa" id="table-custom">
                         <thead>
                             <tr>
+                                <th scope="col">No</th>
                                 <th scope="col">Hari</th>
                                 <th scope="col">Mata Pelajaran</th>
                                 <th scope="col">Jam Pelajaran</th>
@@ -25,6 +26,7 @@
                             {% regroup jadwal by hari as daftar_jadwal %}
                             {% for kegiatan in daftar_jadwal %}
                             <tr>
+                                <td>{{ forloop.counter }}</td>
                                 <td>{{ kegiatan.grouper }}</td>
                                 <td>
                                     <ol style="padding: 0px;">

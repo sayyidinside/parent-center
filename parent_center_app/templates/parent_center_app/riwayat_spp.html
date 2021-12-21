@@ -19,19 +19,48 @@
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Tahun Ajaran</th>
+                                <th scope="col">Semester</th>
                                 <th scope="col">Bulan</th>
                                 <th scope="col">Jumlah Bayar</th>
                                 <th scope="col">Tanggal Bayar</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for data in spp %}
                             <tr>
-                                <td>1</td>
-                                <td>2020/2021</td>
-                                <td>Januari</td>
-                                <td>Rp. 1.500.000</td>
-                                <td>01-01-2020</td>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ data.thn_ajar }}</td>
+                                <td>{{ data.get_semester_display }}</td>
+                                <td>{% if data.bulan_ke == 1 %}
+                                        Januari
+                                    {% elif data.bulan_ke == 2 %}
+                                        Febuari
+                                    {% elif data.bulan_ke == 3 %}
+                                        Maret
+                                    {% elif data.bulan_ke == 4 %}
+                                        April
+                                    {% elif data.bulan_ke == 5 %}
+                                        Mei
+                                    {% elif data.bulan_ke == 6 %}
+                                        Juni
+                                    {% elif data.bulan_ke == 7 %}
+                                        Juli
+                                    {% elif data.bulan_ke == 8 %}
+                                        Agustus
+                                    {% elif data.bulan_ke == 9 %}
+                                        September
+                                    {% elif data.bulan_ke == 10 %}
+                                        Oktober
+                                    {% elif data.bulan_ke == 11 %}
+                                        November
+                                    {% else %}
+                                        Desember
+                                    {% endif %}
+                                </td>
+                                <td>Rp. {{ data.jumlah }},00</td>
+                                <td>{{ data.tgl_bayar|date:'d-m-Y' }}</td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

@@ -540,7 +540,13 @@ def riwayatSpp(request):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
-        context = {'title': 'Riwayat Pembayaran SPP Siswa'}
+        siswa = request.user.extenduser.orangtua.id_ortu.pk
+        spp = PembayaranSPP.objects.all().order_by('thn_ajar').filter(id_siswa=siswa).reverse()
+
+        context = {
+            'title': 'Riwayat Pembayaran SPP Siswa',
+            'spp': spp
+        }
         return render(request,
                       'parent_center_app/riwayat_spp.html',
                       context)

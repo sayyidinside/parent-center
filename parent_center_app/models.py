@@ -325,7 +325,7 @@ class PembayaranSPP(models.Model):
     bulan_ke = models.PositiveSmallIntegerField(validators=[MaxValueValidator(12),
                                                             MinValueValidator(1)])
     jumlah = models.PositiveBigIntegerField()
-    thn_ajar = models.CharField(max_length=5)
+    thn_ajar = models.CharField(max_length=10, default='2012/2022')
 
     class Semesteran(models.TextChoices):
         ganjil = '1', 'Ganjil',
