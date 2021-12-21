@@ -14,10 +14,14 @@
                         <div class="align-self-center judul-sort">
                             Mata Pelajaran: &nbsp; 
                         </div>
-                        <select class="select2select" name="id_mapel" id="id_mapel">
-                            <option value="">Matematika</option>
-                            <option value="">Seni Budaya</option>
-                            <option value="">Simulasi Digital</option>                     
+                        <select class="select2select" name="id_mapel" id="id_mapel" onchange="location = this.value;">
+                            {% for mapel in pelajaran %}
+                                {% if mapel.id_mapel == selected %}
+                                <option value="{% url 'nilai siswa' mapel=mapel.id_mapel %}" selected>{{ mapel.nama }}</option>
+                                {% else %}
+                                <option value="{% url 'nilai siswa' mapel=mapel.id_mapel %}">{{ mapel.nama }}</option>
+                                {% endif %}
+                            {% endfor %}                 
                         </select>
                     </div>
                     <div class="table-responsive table-siswa">
@@ -31,18 +35,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for data in nilai %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Tugas 1 Eksponen</td>
-                                    <td class="text-center font-red">70</td>
-                                    <td>Remedial</td>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ data.id_tugas.nama }}</td>
+                                    {% if data.nilai <= 70 %}
+                                        <td class="text-center font-red">{{ data.nilai }}</td>
+                                        {% else %}
+                                        <td class="text-center">{{ data.nilai }}</td>
+                                    {% endif %}
+                                    <td>
+                                        {% if data.nilai <= 70 %}
+                                            Remedial
+                                        {% else %}
+                                            Lulus
+                                        {% endif %}
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Tugas 2 Bilangan Bentuk Akar</td>
-                                    <td class="text-center">90</td>
-                                    <td>Tuntas</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

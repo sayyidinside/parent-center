@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import DaftarAbsen, Guru, Jadwal, Kelas, Mapel
+from .models import DaftarAbsen, Guru, Jadwal, Kelas, Mapel, NilaiTugas
 from .models import OrangTua, Siswa, ExtendUser, PembayaranSPP
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -575,11 +575,21 @@ def absensiSiswa(request, mapel='pel-23112021085749532504'):
 
 
 @login_required(login_url='login')
-def nilaiSiswa(request):
+def nilaiSiswa(request, mapel='pel-23112021085749532504'):
     if level_permission(request, ['Admin', 'Orang Tua']) is False:
         return redirect(level_login(request))
     else:
-        context = {'title': 'Nilai Siswa'}
+        pelajaran = Mapel.objects.all().order_by('nama')
+        siswa = request.user.extenduser.orangtua.id_ortu.pk
+        nilai = NilaiTugas.objects.all().filter(id_siswa=siswa,
+                                                id_tugas__id_mapel=mapel).reverse()
+        selected = mapel
+        context = {
+            'title': 'Nilai Siswa',
+            'pelajaran': pelajaran,
+            'nilai': nilai,
+            'selected': selected
+        }
         return render(request,
                       'parent_center_app/nilai_siswa.html',
                       context)
