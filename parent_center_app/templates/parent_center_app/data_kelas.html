@@ -38,7 +38,8 @@
                                     <td>{{ kelas.kelas}} {{ kelas.get_jurusan_display }} {{ kelas.no_kelas }}</td>
                                     <td>
                                         <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_edit_kelas"><i class="fas fa-pencil-alt"></i></button>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                        <a href="{% url 'delete kelas' pk=kelas.id_kelas %}" class="btn btn-light" ><i class="fas fa-trash-alt"></i></a>
+                                        <!--<button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>-->
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -65,7 +65,8 @@
                                     <td>{{orangTua.alamat}}</td>
                                     <td>
                                         <a class="btn btn-light" href="{% url 'detail orangtua' pk=orangTua.pk %}"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                        <a href="{% url 'delete orangtua' pk=orangTua.id %}" class="btn btn-light" ><i class="fas fa-trash-alt"></i></a>
+                                        <!--<button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>-->
                                     </td>
                                 </tr>
                                 {% endfor %}

@@ -54,7 +54,8 @@
                                         <a href="#"><button class="btn btn-light" class="open-modal" type="button" data-target="#modal_edit_mapel" data-url="{% url 'edit mapel' pk=pelajaran.pk }"">
                                             <i class="fas fa-pencil-alt"></i></button>
                                         </a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                        <a href="{% url 'delete mapel' pk=pelajaran.id_mapel %}" class="btn btn-light" ><i class="fas fa-trash-alt"></i></a>
+                                        <!--<button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>-->
                                     </td>
                                 </tr>
                                 {% endfor %}

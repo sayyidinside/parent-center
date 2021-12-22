@@ -60,7 +60,8 @@
                                 <td>{{ jadwal.id_guru}}</td>
                                 <td>{{ jadwal.mulai |time:"H:i" }} - {{ jadwal.selesai |time:"H:i" }} WIB</td>
                                 <td>
-                                    <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></button>
+                                    <!-- <a href="{% url 'delete jadwal' pk=jadwal.id_jadwal %}" class="btn btn-light" data-toggle="modal" data-target="#modal_hapus"><i class="fas fa-trash-alt"></i></a> -->
+                                    <a href="{% url 'delete jadwal' pk=jadwal.id_jadwal %}" class="btn btn-light" ><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                             {% endfor %}

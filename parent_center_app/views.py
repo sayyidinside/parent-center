@@ -626,3 +626,73 @@ def dashboardGuru(request):
         return render(request,
                       'parent_center_app/dashboard_guru.html',
                       context)
+
+
+@login_required(login_url='login')
+def delete_siswa(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = Siswa.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data siswa')
+
+
+@login_required(login_url='login')
+def delete_guru(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = Guru.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data guru')
+
+
+@login_required(login_url='login')
+def delete_ortu(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = OrangTua.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data orang tua')
+
+
+@login_required(login_url='login')
+def delete_mapel(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = Mapel.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data mapel')
+
+
+@login_required(login_url='login')
+def delete_kelas(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = Kelas.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data kelas')
+
+
+@login_required(login_url='login')
+def delete_spp(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = PembayaranSPP.objects.filter(pk=pk)
+        data.delete()
+    return redirect('data spp')
+
+
+@login_required(login_url='login')
+def delete_jadwal(request, pk):
+    if level_permission(request, ['Admin']) is False:
+        return redirect(level_login(request))
+    else:
+        data = Jadwal.objects.filter(pk=pk)
+        data.delete()
+    return redirect('jadwal kbm', kelas='kls-22112021001556824333')

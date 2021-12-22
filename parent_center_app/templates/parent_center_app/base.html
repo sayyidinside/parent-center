@@ -65,7 +65,7 @@
                                 <i class="fas fa-fw fa-user-tie"></i>&nbsp;
                                 Orang Tua / Wali
                             </a>
-                            <a class="nav-link" href="/cari_spp">
+                            <a class="nav-link" href="/data_spp">
                                 <i class="fas fa-fw fa-wallet"></i>&nbsp;
                                 Pembayaran SPP
                             </a>
@@ -127,8 +127,11 @@
                         Apakah Anda yakin akan menghapus <span class="title-modal">{{ title }}</span> {% block keterangan %}{% endblock keterangan %}?
                     </div>
                     <div class="modal-footer border-0">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-light btn-tambah">Hapus</button>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-light btn-tambah">Hapus</button>
+                        </form>
                     </div>
                 </div>
             </div>

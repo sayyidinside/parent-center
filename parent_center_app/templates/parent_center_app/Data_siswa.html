@@ -67,9 +67,10 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-light" href="{% url 'detail siswa' pk=siswa.pk %}"><i class="fas fa-external-link-square-alt"></i></a>
-                                        <button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus">
+                                        <a href="{% url 'delete siswa' pk=siswa.id_siswa %}" class="btn btn-light" ><i class="fas fa-trash-alt"></i></a>
+                                        <!--<button class="btn btn-light" type="button" data-toggle="modal" data-target="#modal_hapus">
                                             <i class="fas fa-trash-alt"></i>
-                                        </button>
+                                        </button>-->
                                     </td>
                                 </tr>
                                 {% endfor %}
